@@ -1,0 +1,331 @@
+papers:
+  - id: "01"
+    slug: "complexity_dynamics"
+    directory: "01_complexity_dynamics"
+    title: "The First Law of Complexodynamics"
+    short_name: "Complexodynamics"
+    canonical_order: 1
+    build_order: 29
+    baseline_notebook: "01_complexity_dynamics.ipynb"
+    notes:
+      sympy: "Always present; likely thin and mostly explanatory."
+      cubical_agda: "Always present; likely a minimal formalization of state evolution and invariants."
+  - id: "02"
+    slug: "char_rnn_karpathy"
+    directory: "02_char_rnn_karpathy"
+    title: "The Unreasonable Effectiveness of Recurrent Neural Networks"
+    short_name: "Char RNN"
+    canonical_order: 2
+    build_order: 2
+    baseline_notebook: "02_char_rnn_karpathy.ipynb"
+    notes:
+      sympy: "Useful for recurrence and gradient derivations."
+      cubical_agda: "Useful for sequence/state typing and recurrence structure."
+  - id: "03"
+    slug: "lstm_understanding"
+    directory: "03_lstm_understanding"
+    title: "Understanding LSTM Networks"
+    short_name: "LSTM"
+    canonical_order: 3
+    build_order: 3
+    baseline_notebook: "03_lstm_understanding.ipynb"
+    notes:
+      sympy: "Useful for gate equations and gradient bookkeeping."
+      cubical_agda: "Useful for typed gate composition and recurrent state structure."
+  - id: "04"
+    slug: "rnn_regularization"
+    directory: "04_rnn_regularization"
+    title: "RNN Regularization"
+    short_name: "RNN Regularization"
+    canonical_order: 4
+    build_order: 4
+    baseline_notebook: "04_rnn_regularization.ipynb"
+    notes:
+      sympy: "Present, but much of the value is explanatory rather than computational."
+      cubical_agda: "Present, but likely thin beyond masks and recurrence interfaces."
+  - id: "05"
+    slug: "neural_network_pruning"
+    directory: "05_neural_network_pruning"
+    title: "Keeping Neural Networks Simple"
+    short_name: "Pruning"
+    canonical_order: 5
+    build_order: 25
+    baseline_notebook: "05_neural_network_pruning.ipynb"
+    notes:
+      sympy: "Present; symbolic leverage is limited."
+      cubical_agda: "Present; likely focused on sparsity and pruning predicates."
+  - id: "06"
+    slug: "pointer_networks"
+    directory: "06_pointer_networks"
+    title: "Pointer Networks"
+    short_name: "Pointer Networks"
+    canonical_order: 6
+    build_order: 10
+    baseline_notebook: "06_pointer_networks.ipynb"
+    notes:
+      sympy: "Useful for attention score equations; otherwise limited."
+      cubical_agda: "Useful for index-selection invariants."
+  - id: "07"
+    slug: "alexnet_cnn"
+    directory: "07_alexnet_cnn"
+    title: "ImageNet Classification with Deep Convolutional Neural Networks"
+    short_name: "AlexNet"
+    canonical_order: 7
+    build_order: 5
+    baseline_notebook: "07_alexnet_cnn.ipynb"
+    notes:
+      sympy: "Present, but mostly ceremonial beyond conv arithmetic and shape equations."
+      cubical_agda: "Present; useful mainly for tensor shape/index invariants."
+  - id: "08"
+    slug: "seq2seq_for_sets"
+    directory: "08_seq2seq_for_sets"
+    title: "Order Matters: Sequence to Sequence for Sets"
+    short_name: "Seq2Seq for Sets"
+    canonical_order: 8
+    build_order: 11
+    baseline_notebook: "08_seq2seq_for_sets.ipynb"
+    notes:
+      sympy: "Present; moderate value for pooling and attention identities."
+      cubical_agda: "Useful for permutation-related invariants."
+  - id: "09"
+    slug: "gpipe"
+    directory: "09_gpipe"
+    title: "GPipe"
+    short_name: "GPipe"
+    canonical_order: 9
+    build_order: 19
+    baseline_notebook: "09_gpipe.ipynb"
+    notes:
+      sympy: "Always present, but mostly superfluous."
+      cubical_agda: "Always present; useful for scheduling/state interfaces more than training dynamics."
+  - id: "10"
+    slug: "resnet_deep_residual"
+    directory: "10_resnet_deep_residual"
+    title: "Deep Residual Learning for Image Recognition"
+    short_name: "ResNet"
+    canonical_order: 10
+    build_order: 6
+    baseline_notebook: "10_resnet_deep_residual.ipynb"
+    notes:
+      sympy: "Present; value is limited to residual equations and simple Jacobian intuition."
+      cubical_agda: "Useful for residual block composition and shape preservation."
+  - id: "11"
+    slug: "dilated_convolutions"
+    directory: "11_dilated_convolutions"
+    title: "Dilated Convolutions"
+    short_name: "Dilated Convolutions"
+    canonical_order: 11
+    build_order: 8
+    baseline_notebook: "11_dilated_convolutions.ipynb"
+    notes:
+      sympy: "Present; mainly for receptive-field arithmetic."
+      cubical_agda: "Useful for index spacing and receptive-field structure."
+  - id: "12"
+    slug: "graph_neural_networks"
+    directory: "12_graph_neural_networks"
+    title: "Neural Message Passing for Graphs"
+    short_name: "GNNs"
+    canonical_order: 12
+    build_order: 16
+    baseline_notebook: "12_graph_neural_networks.ipynb"
+    notes:
+      sympy: "Present; moderate value for message aggregation equations."
+      cubical_agda: "Useful for graph/message typing and aggregation laws."
+  - id: "13"
+    slug: "attention_is_all_you_need"
+    directory: "13_attention_is_all_you_need"
+    title: "Attention Is All You Need"
+    short_name: "Transformer"
+    canonical_order: 13
+    build_order: 12
+    baseline_notebook: "13_attention_is_all_you_need.ipynb"
+    notes:
+      sympy: "Useful for attention identities, but limited for full model mechanics."
+      cubical_agda: "Useful for tensor interfaces and attention block composition."
+  - id: "14"
+    slug: "bahdanau_attention"
+    directory: "14_bahdanau_attention"
+    title: "Neural Machine Translation by Jointly Learning to Align and Translate"
+    short_name: "Bahdanau Attention"
+    canonical_order: 14
+    build_order: 9
+    baseline_notebook: "14_bahdanau_attention.ipynb"
+    notes:
+      sympy: "Useful for alignment-score equations."
+      cubical_agda: "Useful for encoder-decoder interfaces."
+  - id: "15"
+    slug: "identity_mappings_resnet"
+    directory: "15_identity_mappings_resnet"
+    title: "Identity Mappings in Deep Residual Networks"
+    short_name: "Identity Mappings"
+    canonical_order: 15
+    build_order: 7
+    baseline_notebook: "15_identity_mappings_resnet.ipynb"
+    notes:
+      sympy: "Present; mostly explanatory."
+      cubical_agda: "Useful for skip-path invariants and block equivalences."
+  - id: "16"
+    slug: "relational_reasoning"
+    directory: "16_relational_reasoning"
+    title: "Relational Reasoning"
+    short_name: "Relation Networks"
+    canonical_order: 16
+    build_order: 13
+    baseline_notebook: "16_relational_reasoning.ipynb"
+    notes:
+      sympy: "Present; moderate value for pairwise aggregation equations."
+      cubical_agda: "Useful for relation typing and permutation-sensitive structure."
+  - id: "17"
+    slug: "variational_autoencoder"
+    directory: "17_variational_autoencoder"
+    title: "Variational Lossy Autoencoder"
+    short_name: "VAE"
+    canonical_order: 17
+    build_order: 18
+    baseline_notebook: "17_variational_autoencoder.ipynb"
+    notes:
+      sympy: "Useful for ELBO and KL derivations."
+      cubical_agda: "Present; likely thin beyond latent-variable interfaces."
+  - id: "18"
+    slug: "relational_rnn"
+    directory: "18_relational_rnn"
+    title: "Relational RNNs"
+    short_name: "Relational RNN"
+    canonical_order: 18
+    build_order: 14
+    baseline_notebook: "18_relational_rnn.ipynb"
+    notes:
+      sympy: "Present; useful for selected subexpressions, not full backprop."
+      cubical_agda: "Useful for memory-slot structure and attention interfaces."
+  - id: "19"
+    slug: "coffee_automaton"
+    directory: "19_coffee_automaton"
+    title: "The Coffee Automaton"
+    short_name: "Coffee Automaton"
+    canonical_order: 19
+    build_order: 30
+    baseline_notebook: "19_coffee_automaton.ipynb"
+    notes:
+      sympy: "Always present; mostly explanatory."
+      cubical_agda: "Always present; likely a minimal formalization of automaton rules."
+  - id: "20"
+    slug: "neural_turing_machine"
+    directory: "20_neural_turing_machine"
+    title: "Neural Turing Machines"
+    short_name: "NTM"
+    canonical_order: 20
+    build_order: 15
+    baseline_notebook: "20_neural_turing_machine.ipynb"
+    notes:
+      sympy: "Present; useful for addressing equations."
+      cubical_agda: "Useful for memory/addressing interfaces and invariants."
+  - id: "21"
+    slug: "ctc_speech"
+    directory: "21_ctc_speech"
+    title: "Deep Speech 2"
+    short_name: "CTC"
+    canonical_order: 21
+    build_order: 17
+    baseline_notebook: "21_ctc_speech.ipynb"
+    notes:
+      sympy: "Present, but dynamic-programming structure matters more than symbolic algebra."
+      cubical_agda: "Useful for path/alignment state structure."
+  - id: "22"
+    slug: "scaling_laws"
+    directory: "22_scaling_laws"
+    title: "Scaling Laws"
+    short_name: "Scaling Laws"
+    canonical_order: 22
+    build_order: 20
+    baseline_notebook: "22_scaling_laws.ipynb"
+    notes:
+      sympy: "Always present, but mostly superfluous."
+      cubical_agda: "Always present; likely only a minimal statement of fitted-law structure."
+  - id: "23"
+    slug: "mdl_principle"
+    directory: "23_mdl_principle"
+    title: "MDL Principle"
+    short_name: "MDL"
+    canonical_order: 23
+    build_order: 26
+    baseline_notebook: "23_mdl_principle.ipynb"
+    notes:
+      sympy: "Useful for code-length expressions and comparisons."
+      cubical_agda: "Useful for formalizing simple description-length relations."
+  - id: "24"
+    slug: "machine_super_intelligence"
+    directory: "24_machine_super_intelligence"
+    title: "Machine Super Intelligence"
+    short_name: "MSI"
+    canonical_order: 24
+    build_order: 28
+    baseline_notebook: "24_machine_super_intelligence.ipynb"
+    notes:
+      sympy: "Always present; mostly explanatory."
+      cubical_agda: "Always present; likely thin and focused on minimal formal interfaces."
+  - id: "25"
+    slug: "kolmogorov_complexity"
+    directory: "25_kolmogorov_complexity"
+    title: "Kolmogorov Complexity"
+    short_name: "Kolmogorov"
+    canonical_order: 25
+    build_order: 27
+    baseline_notebook: "25_kolmogorov_complexity.ipynb"
+    notes:
+      sympy: "Present; limited but still useful for notation and inequalities."
+      cubical_agda: "Present; useful for minimal formal statements, not computable realization."
+  - id: "26"
+    slug: "cs231n_cnn_fundamentals"
+    directory: "26_cs231n_cnn_fundamentals"
+    title: "CS231n: CNNs for Visual Recognition"
+    short_name: "CS231n"
+    canonical_order: 26
+    build_order: 1
+    baseline_notebook: "26_cs231n_cnn_fundamentals.ipynb"
+    notes:
+      sympy: "Present; mostly for small derivations and notation."
+      cubical_agda: "Present; useful for tensor shape discipline and layer composition."
+  - id: "27"
+    slug: "multi_token_prediction"
+    directory: "27_multi_token_prediction"
+    title: "Multi-token Prediction"
+    short_name: "MTP"
+    canonical_order: 27
+    build_order: 21
+    baseline_notebook: "27_multi_token_prediction.ipynb"
+    notes:
+      sympy: "Always present; mostly superfluous."
+      cubical_agda: "Always present; likely thin beyond interface-level formalization."
+  - id: "28"
+    slug: "dense_passage_retrieval"
+    directory: "28_dense_passage_retrieval"
+    title: "Dense Passage Retrieval"
+    short_name: "DPR"
+    canonical_order: 28
+    build_order: 22
+    baseline_notebook: "28_dense_passage_retrieval.ipynb"
+    notes:
+      sympy: "Always present; little symbolic leverage."
+      cubical_agda: "Always present; useful mainly for encoder/retriever interface signatures."
+  - id: "29"
+    slug: "rag"
+    directory: "29_rag"
+    title: "Retrieval-Augmented Generation"
+    short_name: "RAG"
+    canonical_order: 29
+    build_order: 23
+    baseline_notebook: "29_rag.ipynb"
+    notes:
+      sympy: "Always present; mostly explanatory."
+      cubical_agda: "Always present; likely thin beyond component composition."
+  - id: "30"
+    slug: "lost_in_middle"
+    directory: "30_lost_in_middle"
+    title: "Lost in the Middle"
+    short_name: "Lost in the Middle"
+    canonical_order: 30
+    build_order: 24
+    baseline_notebook: "30_lost_in_middle.ipynb"
+    notes:
+      sympy: "Always present; mostly superfluous."
+      cubical_agda: "Always present; likely a minimal formal treatment of position/index behavior."
