@@ -1,6 +1,6 @@
 # Notes
 
-- SymPy status: present
-- Cubical Agda status: present
-- What is superfluous here:
-- What is still worth encoding anyway:
+- SymPy status: substantive
+- Cubical Agda status: minimal but meaningful
+- What is superfluous here: full symbolic training dynamics across many time steps.
+- What is still worth encoding anyway: gate equations, state update structure, and the separation between hidden state and cell state.

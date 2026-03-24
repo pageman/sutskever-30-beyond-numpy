@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sutskever-30-beyond-numpy"
+version = "0.1.0"
+description = "Multi-backend reference implementations for selected papers from the Sutskever reading list."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=2.0",
+  "sympy>=1.14",
+  "torch>=2.8",
+  "jax>=0.4.30",
+  "jaxlib>=0.4.30",
+  "pytest>=8.4",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["papers"]
+

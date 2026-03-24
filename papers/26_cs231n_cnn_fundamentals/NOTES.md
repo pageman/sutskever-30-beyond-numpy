@@ -1,6 +1,6 @@
 # Notes
 
-- SymPy status: present
-- Cubical Agda status: present
-- What is superfluous here:
-- What is still worth encoding anyway:
+- SymPy status: present but intentionally light
+- Cubical Agda status: minimal but meaningful
+- What is superfluous here: symbolic convolution over an entire image tensor is less informative than the implementation itself.
+- What is still worth encoding anyway: output-shape arithmetic, affine-softmax structure, and the idea that layer composition preserves a well-typed image pipeline.
