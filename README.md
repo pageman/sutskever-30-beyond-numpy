@@ -275,81 +275,87 @@ The stronger and more defensible claim is:
 
 ### Narrative Arc
 
-The completed build order now reads like a full research-training arc rather than a loose collection of ports.
+The finished build order reads like a research apprenticeship arc.
 
-Act I established the grammar of learning systems:
+It starts by teaching the grammar of learning systems:
 
 - `26`, `02`, `03`, `04`
-- vision basics, vanilla recurrence, gated recurrence, and regularization
+- direct classifiers, vanilla recurrence, gated recurrence, and regularization
 
-Act II established the architecture backbone:
+It then builds the main architectural backbone:
 
 - `07`, `10`, `15`, `11`
-- CNNs, residual pathways, identity mappings, and receptive-field control
+- convolution, depth, residual routing, identity mappings, and receptive-field control
 
-Act III moved into structured cognition:
+It then shifts from raw architecture into structured computation:
 
 - `14`, `06`, `08`, `13`, `16`, `18`, `20`, `12`, `21`, `17`
-- alignment, pointing, set structure, attention, relations, memory, graphs, sequence alignment, and latent variables
+- alignment, pointing, set structure, attention, relational reasoning, memory, graphs, sequence alignment, and latent variables
 
-Act IV moved into modern LLM and retrieval behavior:
+It then arrives at modern large-model and retrieval behavior:
 
 - `09`, `22`, `27`, `28`, `29`, `30`
-- systems scaling, scaling-law abstraction, multi-token prediction, retrieval, retrieval-augmented generation, and context-position effects
+- systems scaling, scaling-law abstractions, multi-token prediction, retrieval, retrieval-augmented generation, and context-position effects
 
-Act V closed with reflective and theoretical tails:
+It closes with a deliberately theory-heavy tail:
 
 - `05`, `23`, `25`, `24`, `01`, `19`
-- simplicity, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
+- simplicity pressure, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
 
-The important consequence is cumulative language. Later papers do not have to invent their own local notation, test discipline, or backend vocabulary from scratch. They inherit tested shapes, losses, invariants, and implementation patterns from earlier ones.
+The result is cumulative language. Later papers do not arrive in isolation. They inherit notation, test discipline, backend expectations, parity habits, and formalization norms from earlier ones. That matters because the educational value of a corpus is not just in having many papers; it is in making the later ones easier to think with because the earlier ones already established the conceptual grammar.
 
 > **Narrative / Story Box**
-> The story of the repo is a climb from hand-checkable learning mechanisms to systems-level and theory-adjacent ideas. It starts with the grammar of deep learning, passes through architecture and memory, reaches retrieval and context behavior, and then ends in a deliberately reflective tail where the executable object is often a proxy and the notes matter as much as the code.
+> The story of the repo is a climb from hand-checkable mechanisms to systems-level behavior and then into reflective, theory-adjacent territory. It begins with learning how to state and train simple objects correctly, moves through memory, attention, and retrieval, and ends in a tail where the notes, claims, and formal slices are often as important as the executable toy itself.
 
 ### Methodological Arc
 
-The methodological arc is as important as the paper sequence.
+The methodological arc matters as much as the paper sequence because the repo is not only collecting implementations. It is repeatedly forcing the same reduction:
 
-At the start of the project, the problem is mostly mechanical:
+- what is the smallest executable object here?
+- what is the core equation or invariant?
+- what must survive translation across backends?
+- what is intentionally thin, partial, or ceremonial?
 
-- can the core object be stated clearly?
-- can the tensor program be made tiny and deterministic?
-- can multiple backends agree on it?
+In the early papers, the difficulty is mostly mechanical:
 
-As the build order progresses, the problem becomes interpretive:
+- state the object clearly
+- make the tensor program tiny and deterministic
+- force agreement across backends
 
-- what exactly is the paper claiming?
-- which part is executable mechanism and which part is conceptual framing?
-- what deserves symbolic treatment, and what would only be ceremonial?
-- what deserves a formal interface in Agda, and what would be fake rigor?
+In the middle papers, the difficulty becomes architectural:
 
-That shift is intentional. The repository is designed so that early papers build implementation discipline, while later papers test representational discipline.
+- preserve shape discipline
+- preserve attention or memory semantics
+- keep parity without hiding complexity behind framework magic
 
-The repo’s recurring method is:
+In the later papers, the difficulty becomes interpretive:
+
+- decide which part is executable mechanism and which part is conceptual framing
+- decide what `SymPy` can illuminate versus what it can only restate
+- decide what `Cubical Agda` can formalize honestly versus what would be fake rigor
+
+That shift is deliberate. Early papers train implementation discipline. Later papers train representational discipline.
+
+The recurring method of the repo is:
 
 1. write a precise `spec.md`
-2. choose a tiny deterministic problem
-3. make the NumPy layer the smallest executable truth source
-4. add symbolic, minimal autodiff, practical, and functional backends
-5. keep the formal layer present even when thin
-6. test parity and one-step behavior instead of just checking that files exist
-7. state omissions honestly in `NOTES.md`
+2. choose a tiny deterministic problem or toy object
+3. make `NumPy` the smallest executable truth source
+4. add `SymPy`, `tinygrad`, `PyTorch`, and `JAX` as distinct interpretive and executable layers
+5. keep `Cubical Agda` present as a real formal layer even when it is minimal
+6. test parity, smoke behavior, and runner coverage instead of only checking file presence
+7. state omissions and low-value layers plainly in `NOTES.md`
 
-The result is not just a collection of implementations. It is a repeated method for reducing a paper to a stable comparative object.
+The end result is a comparative method, not just a code archive. Each paper becomes a stable object that can be inspected numerically, symbolically, through a small autodiff system, through mainstream frameworks, through a functional transformation stack, and through a typed formal layer.
 
 > **Method Box**
-> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic dataset, one minimal numerical truth source, several executable interpretations, one explicit note about what is thin, and one formal layer that is real even when small.
+> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic object, one minimal numerical truth source, several executable translations, one honest note about what is thin, and one formal layer that is real even when small.
 
 > **Narrative / Story Box**
-> If the narrative arc is “how the ideas get larger,” the methodological arc is “how the repo gets stricter.” Early on, strictness means writing the math plainly. Later on, it means refusing to pretend that a thin symbolic or formal layer is deep when it is not.
+> If the narrative arc is “the ideas get larger,” the methodological arc is “the standards get stricter.” The repo begins by teaching how to implement the math plainly, and it ends by demanding honesty about what is actually executable, what is merely derivational, and what is formalized in a meaningful way.
 
 > **Method Box**
-> In practice, the repo works best when every paper answers four questions clearly:
-> what is the smallest executable object,
-> what is the core equation,
-> what do the backends have to agree on,
-> and what is intentionally omitted.
+> In practice, the repo works best when every paper answers four questions clearly: what is the smallest executable object, what is the core equation, what do the backends have to agree on, and what is intentionally omitted.
 
 ## Status
 
