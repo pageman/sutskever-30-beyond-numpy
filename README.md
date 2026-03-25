@@ -37,6 +37,138 @@ Rules:
 - `JAX` is the second executable implementation and a cross-check on functional structure.
 - `Cubical Agda` is always present, even if the note says the formalization is intentionally thin.
 
+## Why This Pipeline
+
+This repository is not trying to collect random backend ports. The point of the stack is that each layer answers a different question about the same paper.
+
+### The Short Version
+
+```text
+NumPy -> SymPy -> tinygrad -> PyTorch -> JAX -> Cubical Agda
+```
+
+Read it like this:
+
+- `NumPy`: what is the numerical object?
+- `SymPy`: what is the symbolic formula?
+- `tinygrad`: what is the smallest real autodiff implementation of that formula?
+- `PyTorch`: what is the practical, production-grade implementation?
+- `JAX`: what does the same system look like in a functional transformation-oriented style?
+- `Cubical Agda`: what can be stated and checked at the level of types, invariants, and proofs?
+
+That ordering is deliberate. It moves from direct manipulation, to derivation, to minimal autodiff, to industrial tooling, to functional cross-checking, to formal structure.
+
+### What Each Layer Contributes
+
+`NumPy` is the foundation because it leaves very little hidden.
+
+- Arrays, linear algebra, and eager numerical execution are explicit.
+- There is no automatic differentiation engine to hide mistakes.
+- If a paper uses a recurrence, an attention score, a KL term, or a convolution, a NumPy implementation forces the repository to say exactly what that object is in ordinary numerical terms.
+
+`SymPy` sits directly above that because it answers a different question from NumPy.
+
+- NumPy tells you the value for an input.
+- SymPy tells you the formula, the derivative, the simplification, or the identity behind that value.
+- This is the layer where the repo can justify gradient formulas, ELBO algebra, gate equations, receptive-field arithmetic, and attention-score derivations without hiding behind code alone.
+
+`tinygrad` comes next because it is the first genuinely executable autodiff backend that is still small enough to feel transparent.
+
+- It lets the repo move from hand-written math to a real framework tensor/autograd model.
+- Unlike larger frameworks, the implementation remains compact enough that the backend still serves the educational goal of the repo rather than overwhelming it.
+- In this project, `tinygrad` is the bridge between “I can derive this” and “I can run this in a framework without losing the conceptual thread.”
+
+`PyTorch` remains after `tinygrad`, not before it.
+
+- PyTorch is the main practical reference backend in the repo.
+- It is the place where the implementation should be easiest to extend, train, debug, and compare against common practice.
+- It has the richest ergonomics for most papers here, but that is exactly why it should not be the first executable layer. By the time code reaches PyTorch in this pipeline, the repo should already know what it is trying to say.
+
+`JAX` comes after PyTorch because the project uses it as a second serious executable interpretation, not as the canonical first one.
+
+- JAX forces clearer parameter/state separation.
+- JAX makes the function transformation view explicit: `grad`, `jit`, `vmap`, and related structure.
+- It is valuable as a parity backend because agreement between PyTorch and JAX catches a class of implementation drift that a single-framework repo would miss.
+
+`Cubical Agda` comes last because it is not “just another backend.”
+
+- It is the layer for signatures, invariants, structural interfaces, and proofs.
+- For some papers this means a meaningful formal core.
+- For others it means a deliberately thin but explicit statement of what is worth formalizing and what would be ceremonial.
+- The repo keeps it present across all papers because completeness matters, but it does not pretend that every paper deserves the same proof effort.
+
+### Why This Order Is Better Than Random Backend Accumulation
+
+The important point is that the layers are not interchangeable.
+
+- `SymPy` is not a weaker `tinygrad`.
+- `tinygrad` is not a smaller `PyTorch`.
+- `JAX` is not just “PyTorch but different syntax.”
+- `Cubical Agda` is not an implementation backend in the ordinary sense at all.
+
+They do different jobs:
+
+- `NumPy` gives direct executable mathematics.
+- `SymPy` gives algebraic explanation.
+- `tinygrad` gives minimal autodiff execution.
+- `PyTorch` gives practical implementation depth.
+- `JAX` gives functional cross-verification.
+- `Cubical Agda` gives formal structure.
+
+This is why the repo uses one canonical pipeline instead of treating the backends as a flat checklist.
+
+### Why tinygrad Belongs Here
+
+Adding `tinygrad` improves the stack because there was previously a gap between symbolic derivation and industrial frameworks.
+
+Without `tinygrad`, the jump looked like this:
+
+- symbolic formulas in `SymPy`
+- then immediately into `PyTorch` and `JAX`
+
+That works, but it skips an important explanatory layer. `tinygrad` fills that gap by being:
+
+- executable
+- differentiable
+- framework-shaped
+- still small enough to remain legible
+
+That makes it especially useful for:
+
+- RNNs
+- LSTMs
+- small attention mechanisms
+- compact CNNs
+- VAEs and other papers where the core tensor program matters more than ecosystem integrations
+
+It is less informative for some papers with a heavier systems or evaluation emphasis, and the repo records that explicitly in paper notes. But even there, the policy is the same as with `SymPy` and `Cubical Agda`: keep the layer present, and be honest when it is thin.
+
+### What the Repository Gains From the Full Stack
+
+By the end of this pipeline, a paper in the repo can be understood at multiple levels:
+
+- as direct numerical code
+- as symbolic mathematics
+- as a minimal autodiff program
+- as a practical training implementation
+- as a functional parity implementation
+- as a formal object with explicit invariants
+
+That is the real purpose of the project. It is not only to “have many implementations.” It is to make each paper legible from calculation, to derivation, to execution, to verification.
+
+### The Practical Rule
+
+For implemented papers, the default expectation is:
+
+- `NumPy`: tiny checks only
+- `SymPy`: always present
+- `tinygrad`: always present
+- `PyTorch`: substantive
+- `JAX`: substantive
+- `Cubical Agda`: always present
+
+And when a layer is low-value for a paper, the repository should say so plainly in `NOTES.md` rather than faking depth.
+
 ## Repository Layout
 
 ```text
