@@ -174,6 +174,133 @@ For implemented papers, the default expectation is:
 
 And when a layer is low-value for a paper, the repository should say so plainly in `NOTES.md` rather than faking depth.
 
+## Why This Repo Matters
+
+This repository is most useful as a research-training and research-clarification project.
+
+It is not primarily trying to be:
+
+- a leaderboard repo
+- a production benchmark suite
+- a claim that every paper here has been reproduced at full original scale
+
+It is trying to do something narrower and, for many researchers, more durable:
+
+- make important ML papers executable in small form
+- make their mathematics explicit rather than merely implied
+- make backend agreement part of the method
+- make notes about thin or ceremonial layers explicit instead of pretending every layer contributes equally
+
+### Who This Is For
+
+This repo is especially useful for:
+
+- early-stage AI/ML researchers who want to move from framework fluency to first-principles understanding
+- research engineers who want parity checks across multiple backend styles
+- theory-minded ML readers who care about the distinction between empirical behavior, symbolic derivation, and formal structure
+- teachers and self-learners who want a paper to exist as more than one code artifact
+
+It is less useful for:
+
+- readers who only want the fastest production implementation
+- researchers whose only criterion is original-scale benchmark reproduction
+- people looking for a single-framework “best practices” repo
+
+### The Core Usefulness
+
+The main value is triangulation.
+
+A paper in this repository is not reduced to one implementation language and one style of correctness. Instead, it is seen through several different lenses:
+
+- `NumPy`: the smallest direct numerical statement
+- `SymPy`: the algebraic or derivational statement
+- `tinygrad`: the smallest real autodiff framework statement
+- `PyTorch`: the practical and extensible statement
+- `JAX`: the functional parity statement
+- `Cubical Agda`: the typed and formal statement
+
+That means the repository can help answer different kinds of questions:
+
+- What is this paper actually computing?
+- What equations justify that computation?
+- What does autodiff have to recover?
+- Does the implementation survive translation across backend paradigms?
+- What structural invariant is worth stating explicitly?
+
+For current researchers, that is useful as a debugging and understanding discipline.
+
+For future researchers, it can become a reference corpus for how to study an ML idea across multiple representational layers instead of treating “the PyTorch version” as the whole object.
+
+### Related Work And What Is Unusual Here
+
+This project is not the first educational implementation effort, and it is not the first multi-framework effort.
+
+There are clear neighboring precedents:
+
+- *Dive into Deep Learning* shows that educational material can be written across multiple frameworks.
+- *The Annotated Transformer* is a classic example of deeply explanatory paper-to-code exposition.
+- framework-bridging projects such as `EagerPy` and multi-backend scientific ML libraries show that common logic can span several array/tensor systems.
+- `tinygrad` itself demonstrates the value of a small, inspectable autodiff framework.
+- proof-assistant work around neural-network-adjacent mathematics shows that formal methods can be brought into ML-adjacent domains.
+
+What seems unusual here is the synthesis.
+
+This repository deliberately combines all of the following:
+
+- a fixed paper corpus
+- a dependency-aware build order
+- a standing multi-layer pipeline
+- always-present symbolic and formal layers, even when thin
+- backend parity as a normal expectation rather than an optional extra
+- paper notes that explicitly say when a layer is low-value or ceremonial
+
+So the claim is not “nothing like this has ever existed.”
+
+The stronger and more defensible claim is:
+
+- the components all have precedents
+- the combination is unusual
+- the method is the point
+
+### The Research Arc So Far
+
+The repository has already taken on a recognizable shape.
+
+The early build order established the grammar of deep learning:
+
+- recurrence
+- gating
+- regularization
+- convolution
+- residual learning
+
+The middle of the build order moved into structure and mechanism:
+
+- attention
+- pointer-style outputs
+- set encoding
+- graph message passing
+- memory systems
+- latent-variable models
+
+That matters because later papers no longer need to invent their own local language from scratch. They inherit a vocabulary of tested objects, shapes, losses, and invariants from earlier papers.
+
+### The Methodological Arc
+
+The process only works if every paper is reduced to a disciplined small core.
+
+The repo’s method is:
+
+1. write a precise `spec.md`
+2. choose a tiny deterministic problem
+3. make the NumPy layer the smallest executable truth source
+4. add symbolic, minimal autodiff, practical, and functional backends
+5. keep the formal layer present even when thin
+6. test parity and one-step behavior instead of just checking that files exist
+7. state omissions honestly in `NOTES.md`
+
+That is the real research method embedded in the repo. It is less about collecting code and more about building stable comparative understanding.
+
 ## Repository Layout
 
 ```text
