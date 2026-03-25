@@ -1,11 +1,10 @@
-"""Minimal NumPy sanity checks for The First Law of Complexodynamics."""
-
 from __future__ import annotations
 
 from s30bn.paper01_complexodynamics import (
     ComplexodynamicsConfig,
-    forward_numpy,
+    forward_torch,
     init_params,
+    params_to_torch,
     synthetic_complexodynamics_batch,
 )
 
@@ -13,9 +12,9 @@ from s30bn.paper01_complexodynamics import (
 def main() -> None:
     config = ComplexodynamicsConfig()
     states, targets = synthetic_complexodynamics_batch()
-    result = forward_numpy(init_params(config), states, targets)
-    print("paper 01 numpy loss:", round(float(result["loss"]), 6))
-    print("paper 01 logits shape:", result["logits"].shape)
+    loss, logits = forward_torch(params_to_torch(init_params(config)), states, targets)
+    print("paper 01 torch loss:", round(float(loss.detach()), 6))
+    print("paper 01 torch logits shape:", tuple(logits.shape))
 
 
 if __name__ == "__main__":

@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+Symbolic treatment is minimal here. The useful contribution is just the explicit statement that the executable proxy is a simple state-to-score mapping rather than a complete law.

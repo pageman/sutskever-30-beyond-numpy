@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. This is somewhat ceremonial here, but it keeps the automaton proxy executable across the full stack.

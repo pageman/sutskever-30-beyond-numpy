@@ -18,6 +18,12 @@ from s30bn.paper02_char_rnn import (
     forward_numpy as char_forward_numpy,
     init_params as init_char_params,
 )
+from s30bn.paper01_complexodynamics import (
+    ComplexodynamicsConfig,
+    forward_numpy as complexodynamics_forward_numpy,
+    init_params as init_complexodynamics_params,
+    synthetic_complexodynamics_batch,
+)
 from s30bn.paper03_lstm import (
     LSTMConfig,
     build_dataset as build_lstm_dataset,
@@ -65,6 +71,12 @@ from s30bn.paper18_relational_rnn import (
     forward_numpy as relational_rnn_forward_numpy,
     init_params as init_relational_rnn_params,
 )
+from s30bn.paper19_coffee_automaton import (
+    CoffeeConfig,
+    forward_numpy as coffee_forward_numpy,
+    init_params as init_coffee_params,
+    synthetic_coffee_batch,
+)
 from s30bn.paper09_gpipe import GPipeConfig, forward_numpy as gpipe_forward_numpy, init_params as init_gpipe_params, synthetic_pipeline_batch
 from s30bn.paper20_neural_turing_machine import (
     NTMConfig,
@@ -99,6 +111,13 @@ def run_02() -> None:
     inputs, targets = build_char_dataset(config)
     result = char_forward_numpy(init_char_params(config), inputs, targets)
     print(f"paper 02 numpy loss: {result['loss']:.6f}")
+
+
+def run_01() -> None:
+    config = ComplexodynamicsConfig()
+    states, targets = synthetic_complexodynamics_batch()
+    result = complexodynamics_forward_numpy(init_complexodynamics_params(config), states, targets)
+    print(f"paper 01 numpy loss: {result['loss']:.6f}")
 
 
 def run_03() -> None:
@@ -220,6 +239,13 @@ def run_18() -> None:
     print(f"paper 18 numpy loss: {result['loss']:.6f}")
 
 
+def run_19() -> None:
+    config = CoffeeConfig()
+    states, targets = synthetic_coffee_batch()
+    result = coffee_forward_numpy(init_coffee_params(config), states, targets)
+    print(f"paper 19 numpy loss: {result['loss']:.6f}")
+
+
 def run_20() -> None:
     config = NTMConfig()
     inputs, targets = build_ntm_dataset(config)
@@ -299,9 +325,10 @@ def run_30() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"])
+    parser.add_argument("--paper", required=True, choices=["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"])
     args = parser.parse_args()
     {
+        "01": run_01,
         "02": run_02,
         "03": run_03,
         "04": run_04,
@@ -319,6 +346,7 @@ def main() -> None:
         "16": run_16,
         "17": run_17,
         "18": run_18,
+        "19": run_19,
         "20": run_20,
         "21": run_21,
         "22": run_22,

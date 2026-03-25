@@ -1,3 +1,3 @@
 # Cubical Agda
 
-Formalization layer. Keep present even when intentionally minimal.
+Formalization layer. The useful slice is the typed separation between state, evolution proxy, and structural readout.
