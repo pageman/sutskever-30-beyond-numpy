@@ -30,4 +30,4 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
-testpaths = ["papers"]
+testpaths = ["papers", "shared/tests"]

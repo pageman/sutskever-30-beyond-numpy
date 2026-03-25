@@ -229,14 +229,14 @@ def main() -> None:
 
     repo_checks = {
         "pytest": {"command": "python3 -m pytest -q", "passed": True, "exit_code": 0},
-        "gradient_parity": {"command": "python3 -m pytest papers/test_gradient_parity_minimal.py -q", "passed": True, "exit_code": 0},
+        "gradient_parity": {"command": "python3 -m pytest shared/tests/test_gradient_parity_minimal.py -q", "passed": True, "exit_code": 0},
         "agda": {"command": "source scripts/env.sh && make agda-check", "passed": True, "exit_code": 0},
         "run_papers": {"command": "python3 scripts/run_paper.py --paper XX (for all papers)", "passed": True, "exit_code": 0},
     }
 
     if args.run_checks:
         repo_checks["pytest"] = run_command("python3 -m pytest -q")
-        repo_checks["gradient_parity"] = run_command("python3 -m pytest papers/test_gradient_parity_minimal.py -q")
+        repo_checks["gradient_parity"] = run_command("python3 -m pytest shared/tests/test_gradient_parity_minimal.py -q")
         repo_checks["agda"] = run_command("source scripts/env.sh && make agda-check")
         run_ids = sorted(path.name.split("_", 1)[0] for path in PAPERS_DIR.iterdir() if path.is_dir())
         run_results = [run_command(f"python3 scripts/run_paper.py --paper {paper_id}") for paper_id in run_ids]

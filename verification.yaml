@@ -1,6 +1,6 @@
 schema_version: 3
-generated_at: "2026-03-25T05:36:07.237618+00:00"
-checked_commit: "112dca4795a85ef50cafd6ad2dbd05a0cfae2580"
+generated_at: "2026-03-25T05:53:32.551675+00:00"
+checked_commit: "b7b5cbd71b503e34a8930627c10d0724d60b4d8e"
 artifact_commit: null
 git_branch: "main"
 repo_checks:
@@ -10,7 +10,7 @@ repo_checks:
     exit_code: 0
   gradient_parity_minimal:
     passed: true
-    command: "python3 -m pytest papers/test_gradient_parity_minimal.py -q"
+    command: "python3 -m pytest shared/tests/test_gradient_parity_minimal.py -q"
     exit_code: 0
   agda_typecheck:
     passed: true

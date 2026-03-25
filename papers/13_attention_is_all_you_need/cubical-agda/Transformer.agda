@@ -24,3 +24,14 @@ forward a r q k = project r (attend a q k)
 
 forward-unfold : (a : Attention) (r : Readout) (q k : Token) -> forward a r q k ≡ project r (attend a q k)
 forward-unfold a r q k = refl
+
+cong : {A B : Set} {x y : A} -> (f : A -> B) -> x ≡ y -> f x ≡ f y
+cong f refl = refl
+
+forward-cong-context
+  : (a : Attention)
+  -> (r : Readout)
+  -> (q₁ q₂ k₁ k₂ : Token)
+  -> attend a q₁ k₁ ≡ attend a q₂ k₂
+  -> forward a r q₁ k₁ ≡ forward a r q₂ k₂
+forward-cong-context a r q₁ q₂ k₁ k₂ attn≡ = cong (project r) attn≡

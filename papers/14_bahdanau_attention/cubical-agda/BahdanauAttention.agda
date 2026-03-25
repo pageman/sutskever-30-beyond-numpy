@@ -24,3 +24,16 @@ forward attn dec h s = decode dec (attend attn h s) s
 
 forward-unfold : (attn : Attention) (dec : Decoder) (h : EncoderState) (s : DecoderState) -> forward attn dec h s ≡ decode dec (attend attn h s) s
 forward-unfold attn dec h s = refl
+
+cong₂ : {A B C : Set} {x x' : A} {y y' : B} -> (f : A -> B -> C) -> x ≡ x' -> y ≡ y' -> f x y ≡ f x' y'
+cong₂ f refl refl = refl
+
+forward-cong
+  : (attn : Attention)
+  -> (dec : Decoder)
+  -> (h₁ h₂ : EncoderState)
+  -> (s₁ s₂ : DecoderState)
+  -> attend attn h₁ s₁ ≡ attend attn h₂ s₂
+  -> s₁ ≡ s₂
+  -> forward attn dec h₁ s₁ ≡ forward attn dec h₂ s₂
+forward-cong attn dec h₁ h₂ s₁ s₂ ctx≡ state≡ = cong₂ (decode dec) ctx≡ state≡

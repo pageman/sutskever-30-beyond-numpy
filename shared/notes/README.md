@@ -1,8 +1,11 @@
 # Shared Notes
 
-Reserved for future shared notes.
+Shared note schemas and repository-wide note vocabulary live here.
 
-Current status:
-- currently unused
-- repository-wide conventions and backend policy currently live in the top-level `README.md` and `papers.yaml`
-- if repeated notation guides or cross-paper commentary become substantial, they can be collected here
+Current contents:
+- proxy-scope template used for theory-heavy or proxy-heavy papers
+- verification-status vocabulary used across `NOTES.md` files and telemetry
+
+Current design:
+- actual paper notes remain paper-local
+- only repeated schemas, terminology, and review checklists belong here

@@ -1,8 +1,10 @@
 # Shared Tests
 
-Reserved for future shared test helpers.
+Repository-wide tests and reusable test modules live here.
 
-Current status:
-- currently unused
-- the active repo design keeps parity tests, smoke tests, and backend checks paper-local under `papers/*/tests`
-- if repeated assertions or backend harnesses become worth extracting, they can move here
+Current contents:
+- repo-level gradient parity sweeps that apply across all papers
+
+Current design:
+- paper-specific invariants and smoke tests stay under `papers/*/tests`
+- cross-paper verification harnesses can live here when they are genuinely repo-wide rather than paper-local

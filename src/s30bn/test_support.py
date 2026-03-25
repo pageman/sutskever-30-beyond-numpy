@@ -1,4 +1,4 @@
-"""Shared test helpers for parity, shapes, and simple invariants."""
+"""Shared test helpers for parity, shapes, gradients, and simple invariants."""
 
 from __future__ import annotations
 
@@ -52,6 +52,42 @@ def assert_gradient_slice_close(
         value_arr = np.asarray(value, dtype=np.float64)
         assert value_arr.shape == reference_arr.shape, f"{name} gradient slice shape mismatch"
         assert np.allclose(reference_arr, value_arr, atol=atol), f"{name} gradient slice mismatch"
+
+
+def assert_parameter_dict_allclose(
+    reference: Mapping[str, np.ndarray],
+    comparisons: Mapping[str, Mapping[str, np.ndarray]],
+    *,
+    atol: float = 1e-7,
+) -> None:
+    reference_keys = set(reference.keys())
+    for name, params in comparisons.items():
+        assert set(params.keys()) == reference_keys, f"{name} parameter keys mismatch"
+        for key in sorted(reference_keys):
+            ref_arr = np.asarray(reference[key], dtype=np.float64)
+            value_arr = np.asarray(params[key], dtype=np.float64)
+            assert value_arr.shape == ref_arr.shape, f"{name} parameter {key} shape mismatch"
+            assert np.allclose(ref_arr, value_arr, atol=atol), f"{name} parameter {key} mismatch"
+
+
+def mapping_values_to_numpy(
+    mapping: Mapping[str, object],
+    *,
+    grad: bool = False,
+) -> dict[str, np.ndarray]:
+    result: dict[str, np.ndarray] = {}
+    for key, value in mapping.items():
+        selected = getattr(value, "grad") if grad else value
+        if selected is None:
+            raise AssertionError(f"missing {'gradient' if grad else 'value'} for {key}")
+        if hasattr(selected, "detach"):
+            selected = selected.detach()
+        if hasattr(selected, "cpu"):
+            selected = selected.cpu()
+        if hasattr(selected, "numpy"):
+            selected = selected.numpy()
+        result[key] = np.asarray(selected, dtype=np.float64).copy()
+    return result
 
 
 def permute_graph_batch(

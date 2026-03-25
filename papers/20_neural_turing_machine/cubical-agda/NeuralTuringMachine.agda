@@ -19,3 +19,14 @@ step addr c m = write addr c m
 
 step-unfold : (addr : Addressing) (c : Controller) (m : Memory) -> step addr c m ≡ write addr c m
 step-unfold addr c m = refl
+
+cong : {A B : Set} {x y : A} -> (f : A -> B) -> x ≡ y -> f x ≡ f y
+cong f refl = refl
+
+step-cong-memory
+  : (addr : Addressing)
+  -> (c : Controller)
+  -> {m₁ m₂ : Memory}
+  -> m₁ ≡ m₂
+  -> step addr c m₁ ≡ step addr c m₂
+step-cong-memory addr c m≡ = cong (write addr c) m≡
