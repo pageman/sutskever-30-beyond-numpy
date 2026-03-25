@@ -283,89 +283,103 @@ The stronger and more defensible claim is:
 
 ### Narrative Arc
 
-The finished build order now reads like a full research apprenticeship arc with a second pass of verification discipline layered on top of it.
+The completed repo now has a two-stage narrative.
 
-It starts by teaching the grammar of learning systems:
+The first stage is the corpus-building arc. It begins with small learning systems that teach the grammar of ML implementation:
 
 - `26`, `02`, `03`, `04`
 - direct classifiers, vanilla recurrence, gated recurrence, and regularization
 
-It then builds the main architectural backbone:
+It then builds the core architectural backbone:
 
 - `07`, `10`, `15`, `11`
-- convolution, depth, residual routing, identity mappings, and receptive-field control
+- convolution, residual routing, identity mappings, and receptive-field control
 
-It then shifts from raw architecture into structured computation:
+It then moves into structured sequence and reasoning systems:
 
 - `14`, `06`, `08`, `13`, `16`, `18`, `20`, `12`, `21`, `17`
 - alignment, pointing, set structure, attention, relational reasoning, memory, graphs, sequence alignment, and latent variables
 
-It then arrives at modern large-model and retrieval behavior:
+It then reaches modern systems and retrieval behavior:
 
 - `09`, `22`, `27`, `28`, `29`, `30`
-- systems scaling, scaling-law abstractions, multi-token prediction, retrieval, retrieval-augmented generation, and context-position effects
+- pipeline structure, scaling-law abstractions, multi-token prediction, retrieval, retrieval-augmented generation, and context-position effects
 
-It closes with a deliberately theory-heavy tail:
+It closes with a theory-heavy tail:
 
 - `05`, `23`, `25`, `24`, `01`, `19`
-- simplicity pressure, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
+- pruning simplicity, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
 
-What is different now is that the narrative no longer ends with mere structural completion. The repo has begun a second arc: converting presence into evidence. Some papers now have mechanism-specific invariants, shape assertions, stronger post-step backend agreement checks, and explicit proxy-scope notes where the executable toy is narrower than the paper’s true claim. That makes the corpus read less like a static collection of ports and more like an evolving research instrument.
+The second stage is the verification arc. The repo no longer stops at “all 30 papers are present.” It now distinguishes between:
+
+- structural presence
+- thin but real universal verification
+- deeper verification where the paper actually justifies it
+
+That second arc matters. The repository now contains a shared observability layer, a repo-wide minimal gradient-parity sweep, theorem-bearing Agda files across all papers, deeper gradient and post-step parity checks for the compact high-signal papers, and explicit proxy-scope metadata where the executable object is narrower than the paper claim. The narrative therefore changes from “build the corpus” to “calibrate the evidence paper by paper.”
 
 > **Narrative / Story Box**
-> The story of the repo is a climb from hand-checkable mechanisms to systems-level behavior and then into reflective, theory-adjacent territory. It begins by teaching how to state and train simple objects correctly, passes through memory, attention, and retrieval, and ends in a tail where the executable toy, the symbolic layer, the formal layer, and the honesty of the notes all matter differently. The later story is not just “more papers”; it is “better calibrated claims about what each paper representation really establishes.”
+> The repo now reads less like a pile of ports and more like a staged research apprenticeship. First it teaches how to state the object, derive it, run it, and compare it. Then it teaches a harder lesson: not every paper deserves the same depth of proof, parity, or symbolic treatment, and a serious repo should say exactly what was checked and what remains only proxy-faithful.
 
 ### Methodological Arc
 
-The methodological arc matters as much as the paper sequence because the repo is not only collecting implementations. It is repeatedly forcing the same reduction:
+The methodological arc is now clearer than the paper list itself.
 
-- what is the smallest executable object here?
+The repo began with a fixed reduction for every paper:
+
+- what is the smallest executable object?
 - what is the core equation or invariant?
-- what must survive translation across backends?
+- what has to survive translation across backends?
 - what is intentionally thin, partial, ceremonial, or only proxy-faithful?
 
-In the early papers, the difficulty is mostly mechanical:
+That first method produced structural completeness. But the repo now has a second methodological layer: verification must be tiered rather than uniform.
 
-- state the object clearly
-- make the tensor program tiny and deterministic
-- force agreement across backends
-
-In the middle papers, the difficulty becomes architectural:
-
-- preserve shape discipline
-- preserve attention or memory semantics
-- keep parity without hiding complexity behind framework magic
-
-In the later papers, the difficulty becomes interpretive:
-
-- decide which part is executable mechanism and which part is conceptual framing
-- decide what `SymPy` can illuminate versus what it can only restate
-- decide what `Cubical Agda` can formalize honestly versus what would be fake rigor
-- decide whether a theory-heavy paper is being represented directly or only through a narrower executable proxy
-
-That shift is deliberate. Early papers train implementation discipline. Later papers train representational discipline. The recent verification pass adds a further layer: observability discipline. It is no longer enough for a layer to be present; the repo increasingly asks what was tested, what invariant was checked, what shape was asserted, what post-step agreement survived, and what part of the paper claim remains outside the executable regime.
-
-The recurring method of the repo is:
+The current method is:
 
 1. write a precise `spec.md`
 2. choose a tiny deterministic problem or toy object
 3. make `NumPy` the smallest executable truth source
-4. add `SymPy`, `tinygrad`, `PyTorch`, and `JAX` as distinct interpretive and executable layers
-5. keep `Cubical Agda` present as a real formal layer even when it is minimal
-6. test parity, shape, smoke behavior, runner coverage, and selected mechanism-specific invariants instead of only checking file presence
-7. state omissions, low-value layers, and proxy scope plainly in `NOTES.md`
-8. surface the result in `verification.yaml` so the repo’s claims are observable rather than purely rhetorical
+4. add `SymPy`, `tinygrad`, `PyTorch`, and `JAX` as distinct explanatory and executable layers
+5. keep `Cubical Agda` present as a real formal layer, even when the formal slice is intentionally small
+6. enforce a universal thin baseline across all papers:
+   - parity
+   - shape discipline
+   - runner coverage
+   - minimal gradient parity
+   - theorem-bearing Agda presence
+7. deepen selected papers where the mechanism justifies it:
+   - full-parameter Torch/JAX gradient agreement
+   - one-step updated-parameter agreement
+   - stronger invariant tests
+   - stronger Agda lemmas where the abstraction is natural
+8. say plainly in `NOTES.md` and `verification.yaml` when a paper is only represented through a proxy slice
 
-The end result is a comparative method, not just a code archive. Each paper becomes a stable object that can be inspected numerically, symbolically, through a small autodiff system, through mainstream frameworks, through a functional transformation stack, through a typed formal layer, and, for theory-heavy cases, through explicit metadata describing what the executable toy does and does not establish.
+That is the main methodological change. The repo is no longer trying to make every paper equally deep. It is trying to make every paper minimally real, and then selectively make the right papers stronger.
+
+This creates three distinct verification tiers:
+
+- universal baseline:
+  every paper must clear a thin but real floor
+- selective deepening:
+  compact neural and structure-rich papers get stronger parity and invariant work
+- proxy-aware interpretation:
+  theory-heavy or evaluation-heavy papers get stronger scope language instead of fake executable overclaiming
+
+That is a better method than uniformity for its own sake. It respects that some papers are naturally gradient-rich, some are naturally formalizable, and some are better represented honestly through notes and telemetry than through forced code complexity.
+
+The shared refactor reinforces that method. Repo-wide verification patterns now live in shared space, while paper-specific invariants, proofs, and notes remain local. The architecture now mirrors the philosophy:
+
+- repeated method is shared
+- paper claims stay paper-local
 
 > **Method Box**
-> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic object, one minimal numerical truth source, several executable translations, one explicit note about what is thin, one note about what is only proxy-faithful, and one formal layer that is real even when small.
+> The method of the repo is now triangulation with tiers: one compact spec, one tiny deterministic object, one minimal numerical truth source, several executable translations, one thin universal verification floor, and deeper verification only where the paper earns it.
 
 > **Narrative / Story Box**
-> If the narrative arc is “the ideas get larger,” the methodological arc is “the standards get stricter.” The repo begins by teaching how to implement the math plainly, and it increasingly asks harder questions: do the backends still agree after a step, do the shapes line up, does the invariant actually hold, and if the paper is theory-heavy, what exactly is the executable toy a proxy for?
+> If the early story was “can the repo cover the whole reading list?”, the current story is “can it make its confidence legible?” The answer is increasingly yes, because the repo now separates presence from evidence and separates general completion from paper-specific depth.
 
 > **Method Box**
-> In practice, the repo works best when every paper answers five questions clearly: what is the smallest executable object, what is the core equation, what do the backends have to agree on, what invariant is worth checking, and what is intentionally omitted or only represented through a proxy.
+> In practice, the repo now works best when each paper answers six questions clearly: what is the smallest executable object, what is the core equation, what must survive backend translation, what is the minimum verification floor, what deeper checks are warranted here, and what part of the paper remains outside the executable regime.
 
 ## Status
 
