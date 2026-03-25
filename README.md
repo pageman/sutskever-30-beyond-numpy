@@ -21,12 +21,12 @@ Based on the Numpy-version-only:
 - Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](sutskever-30-beyond-numpy.agda-lib)
 - Agda setup notes: [`docs/AGDA_SETUP.md`](docs/AGDA_SETUP.md)
 
-Reserved shared space:
-- [`shared/fixtures`](shared/fixtures)
-- [`shared/tests`](shared/tests)
-- [`shared/notes`](shared/notes)
+Shared infrastructure:
+- [`shared/fixtures`](shared/fixtures) for future shared fixtures; still reserved unless real fixture reuse emerges
+- [`shared/tests`](shared/tests) for repo-wide verification harnesses and cross-paper test modules
+- [`shared/notes`](shared/notes) for shared note schemas and verification vocabulary
 
-Those directories are future-facing reserved space for consolidation. The active repo design today keeps fixtures, notes, and tests paper-local unless repeated patterns become worth extracting.
+The current design keeps paper claims, invariants, proofs, and most fixtures paper-local, but shared verification method and shared note schema now live under `shared/`.
 
 ## Backend Policy
 
@@ -434,7 +434,7 @@ sutskever-30-beyond-numpy/
 ├── README.md
 ├── papers.yaml
 ├── docs/
-├── shared/                    # Reserved for future shared fixtures/tests/notes
+├── shared/                    # Shared verification harnesses, note schemas, and future fixture space
 ├── scripts/
 ├── src/
 │   └── s30bn/
