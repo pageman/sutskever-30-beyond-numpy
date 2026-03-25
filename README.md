@@ -14,11 +14,11 @@ Based on the Numpy-version-only:
 
 ## Tooling
 
-- Python project metadata: [`pyproject.toml`](/Users/hifi/sutskever-30-beyond-numpy/pyproject.toml)
-- Demo runner: [`scripts/run_paper.py`](/Users/hifi/sutskever-30-beyond-numpy/scripts/run_paper.py)
-- tinygrad installer helper: [`scripts/install_tinygrad.sh`](/Users/hifi/sutskever-30-beyond-numpy/scripts/install_tinygrad.sh)
-- Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](/Users/hifi/sutskever-30-beyond-numpy/sutskever-30-beyond-numpy.agda-lib)
-- Agda setup notes: [`docs/AGDA_SETUP.md`](/Users/hifi/sutskever-30-beyond-numpy/docs/AGDA_SETUP.md)
+- Python project metadata: [`pyproject.toml`](pyproject.toml)
+- Demo runner: [`scripts/run_paper.py`](scripts/run_paper.py)
+- tinygrad installer helper: [`scripts/install_tinygrad.sh`](scripts/install_tinygrad.sh)
+- Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](sutskever-30-beyond-numpy.agda-lib)
+- Agda setup notes: [`docs/AGDA_SETUP.md`](docs/AGDA_SETUP.md)
 
 ## Backend Policy
 
@@ -306,16 +306,28 @@ The repo’s method is:
 
 That is the real research method embedded in the repo. It is less about collecting code and more about building stable comparative understanding.
 
+## Status
+
+The full `01..30` corpus is now populated.
+
+Current verification status:
+
+- `61` Python tests passing
+- `make agda-check` passing across all paper formalization layers
+- `scripts/run_paper.py` wired for all `30` papers
+
+That does not mean all papers are implemented at equal depth. It does mean the repository is structurally complete and verified at the level this project claims.
+
 ## Repository Layout
 
 ```text
 sutskever-30-beyond-numpy/
 ├── README.md
 ├── papers.yaml
-├── shared/
-│   ├── fixtures/
-│   ├── tests/
-│   └── notes/
+├── docs/
+├── scripts/
+├── src/
+│   └── s30bn/
 ├── templates/
 │   └── paper-template.md
 └── papers/
@@ -375,16 +387,16 @@ Recommended build order:
 29. `01` First Law of Complexodynamics
 30. `19` Coffee Automaton
 
-The structured source of truth for this is [`papers.yaml`](/Users/hifi/sutskever-30-beyond-numpy/papers.yaml).
+The structured source of truth for this is [`papers.yaml`](papers.yaml).
 
 ## Commands
 
 ```bash
 source scripts/env.sh
-python3 -m pytest papers/02_char_rnn_karpathy/tests/test_char_rnn.py papers/03_lstm_understanding/tests/test_lstm.py papers/26_cs231n_cnn_fundamentals/tests/test_cnn.py -q
-python3 scripts/run_paper.py --paper 02
-python3 scripts/run_paper.py --paper 03
-python3 scripts/run_paper.py --paper 26
+make test
+python3 scripts/run_paper.py --paper 01
+python3 scripts/run_paper.py --paper 19
+python3 scripts/run_paper.py --paper 30
 make agda-check
 ```
 
