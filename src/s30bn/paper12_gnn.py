@@ -76,6 +76,26 @@ def params_to_jax(params: ArrayDict) -> Dict[str, jnp.ndarray]:
     return {key: jnp.asarray(value) for key, value in params.items()}
 
 
+def forward_numpy(
+    params: ArrayDict,
+    graphs: np.ndarray,
+    adjacency: np.ndarray,
+    labels: np.ndarray,
+) -> Dict[str, np.ndarray | float]:
+    logits = []
+    for graph in graphs:
+        messages = np.maximum(graph @ params["W_msg"].T + params["b_msg"], 0.0)
+        self_term = np.maximum(graph @ params["W_self"].T + params["b_self"], 0.0)
+        aggregated = adjacency @ messages + self_term
+        pooled = np.mean(aggregated, axis=0)
+        logits.append(params["W_out"] @ pooled + params["b_out"])
+    logits_arr = np.asarray(logits, dtype=np.float64)
+    shifted = logits_arr - np.max(logits_arr, axis=1, keepdims=True)
+    log_probs = shifted - np.log(np.sum(np.exp(shifted), axis=1, keepdims=True))
+    loss = -np.mean(log_probs[np.arange(labels.shape[0]), labels])
+    return {"loss": float(loss), "logits": logits_arr}
+
+
 def forward_tinygrad(
     params: Dict[str, Tensor],
     graphs: np.ndarray,

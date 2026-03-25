@@ -17,6 +17,7 @@ from s30bn.paper17_vae import (
     train_step_tinygrad,
     train_step_torch,
 )
+from s30bn.test_support import assert_allclose_named, assert_array_shape
 
 
 def test_vae_backends_match_numpy() -> None:
@@ -27,12 +28,23 @@ def test_vae_backends_match_numpy() -> None:
     tinygrad_loss, tinygrad_logits = forward_tinygrad(params_to_tinygrad(params), data, config)
     torch_loss, torch_logits = forward_torch(params_to_torch(params), data, config)
     jax_loss, jax_logits = forward_jax(params_to_jax(params), data, config)
-    assert np.allclose(numpy_result["loss"], tinygrad_loss.item(), atol=1e-8)
-    assert np.allclose(numpy_result["loss"], float(torch_loss.detach()), atol=1e-8)
-    assert np.allclose(numpy_result["loss"], float(jax_loss), atol=1e-8)
-    assert np.allclose(numpy_result["logits"], tinygrad_logits.numpy(), atol=1e-8)
-    assert np.allclose(numpy_result["logits"], torch_logits.detach().numpy(), atol=1e-8)
-    assert np.allclose(numpy_result["logits"], np.asarray(jax_logits), atol=1e-8)
+    assert_allclose_named(
+        numpy_result["loss"],
+        {
+            "tinygrad": tinygrad_loss.item(),
+            "torch": float(torch_loss.detach()),
+            "jax": float(jax_loss),
+        },
+    )
+    assert_allclose_named(
+        numpy_result["logits"],
+        {
+            "tinygrad": tinygrad_logits.numpy(),
+            "torch": torch_logits.detach().numpy(),
+            "jax": np.asarray(jax_logits),
+        },
+    )
+    assert_array_shape(np.asarray(numpy_result["logits"]), data.shape)
 
 
 def test_vae_one_step_improves_loss() -> None:
@@ -57,3 +69,14 @@ def test_vae_one_step_improves_loss() -> None:
     _, jax_params = train_step_jax(jax_params, data, config)
     after_jax, _ = forward_jax(jax_params, data, config)
     assert float(after_jax) <= float(before_jax)
+
+
+def test_vae_kl_is_non_negative_and_reconstruction_shape_matches_input() -> None:
+    config = VAEConfig()
+    params = init_params(config)
+    data = synthetic_binary_data()
+    numpy_result = forward_numpy(params, data, config)
+
+    assert float(numpy_result["kl"]) >= -1e-12
+    assert float(numpy_result["bce"]) >= 0.0
+    assert_array_shape(np.asarray(numpy_result["recon"]), data.shape)

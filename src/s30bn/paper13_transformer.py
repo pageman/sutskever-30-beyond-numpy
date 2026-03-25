@@ -55,18 +55,24 @@ def init_params(config: TransformerConfig, seed: int = 13) -> ArrayDict:
     }
 
 
+def attention_weights_numpy(params: ArrayDict, seqs: np.ndarray) -> np.ndarray:
+    q = seqs @ params["Wq"].T
+    k = seqs @ params["Wk"].T
+    scores = np.matmul(q, np.swapaxes(k, 1, 2)) / np.sqrt(seqs.shape[2])
+    return stable_softmax(scores, axis=2)
+
+
 def forward_numpy(params: ArrayDict, seqs: np.ndarray, targets: np.ndarray) -> Dict[str, np.ndarray | float]:
     q = seqs @ params["Wq"].T
     k = seqs @ params["Wk"].T
     v = seqs @ params["Wv"].T
-    scores = np.matmul(q, np.swapaxes(k, 1, 2)) / np.sqrt(seqs.shape[2])
-    weights = stable_softmax(scores, axis=2)
+    weights = attention_weights_numpy(params, seqs)
     context = np.matmul(weights, v)
     pooled = np.mean(context, axis=1)
     logits = pooled @ params["Wo"].T + params["bo"]
     probs = stable_softmax(logits, axis=1)
     loss = float(-np.mean(np.log(probs[np.arange(targets.shape[0]), targets] + 1e-12)))
-    return {"loss": loss, "logits": logits}
+    return {"loss": loss, "logits": logits, "weights": weights}
 
 
 def params_to_torch(params: ArrayDict) -> Dict[str, torch.Tensor]:

@@ -73,7 +73,15 @@ def forward_numpy(
     recon = 1.0 / (1.0 + np.exp(-logits))
     bce = -np.mean(np.sum(data * np.log(recon + 1e-12) + (1.0 - data) * np.log(1.0 - recon + 1e-12), axis=1))
     kl = 0.5 * np.mean(np.sum(np.exp(logvar) + mu**2 - 1.0 - logvar, axis=1))
-    return {"loss": float(bce + kl), "logits": logits, "mu": mu, "logvar": logvar}
+    return {
+        "loss": float(bce + kl),
+        "logits": logits,
+        "mu": mu,
+        "logvar": logvar,
+        "recon": recon,
+        "bce": float(bce),
+        "kl": float(kl),
+    }
 
 
 def params_to_torch(params: ArrayDict) -> Dict[str, torch.Tensor]:
