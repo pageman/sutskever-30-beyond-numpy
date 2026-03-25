@@ -9,8 +9,8 @@ This repository keeps the original paper numbering for compatibility, but tracks
 
 ## About
 
-Based on the NumPy-version-only baseline:
-- [`pageman/Sutskever-30-Implementations`](https://github.com/pageman/Sutskever-30-Implementations)
+Based on the Numpy-version-only:
+- https://github.com/pageman/sutskever-30-implementations
 
 ## Tooling
 
