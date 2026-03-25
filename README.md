@@ -105,9 +105,22 @@ The structured source of truth for this is [`papers.yaml`](/Users/hifi/sutskever
 ## Commands
 
 ```bash
+source scripts/env.sh
 python3 -m pytest papers/02_char_rnn_karpathy/tests/test_char_rnn.py papers/03_lstm_understanding/tests/test_lstm.py papers/26_cs231n_cnn_fundamentals/tests/test_cnn.py -q
 python3 scripts/run_paper.py --paper 02
 python3 scripts/run_paper.py --paper 03
 python3 scripts/run_paper.py --paper 26
 make agda-check
+```
+
+If `agda` is not already on your shell `PATH`, run:
+
+```bash
+source scripts/env.sh
+```
+
+To make that persistent in `zsh`, add this line to `~/.zshrc`:
+
+```bash
+export PATH="/Users/hifi/Library/Python/3.9/bin:$PATH"
 ```

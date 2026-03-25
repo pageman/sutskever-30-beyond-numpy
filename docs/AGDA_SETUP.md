@@ -21,6 +21,7 @@ brew install agda
 Then verify:
 
 ```bash
+source scripts/env.sh
 agda --version
 make agda-check
 ```
@@ -44,4 +45,4 @@ make agda-check
 - Cubical mode is enabled per file with `{-# OPTIONS --cubical #-}`.
 - These first Agda modules are structural, not numeric.
 - Later papers can opt into the standard library if the formalization actually benefits from it.
-
+- If Agda was installed into `/Users/hifi/Library/Python/3.9/bin`, source `scripts/env.sh` or add that directory to your shell startup file.
