@@ -37,12 +37,14 @@ from s30bn.paper11_dilated_convolutions import (
     init_params as init_dilated_params,
     synthetic_context_dataset,
 )
+from s30bn.paper12_gnn import GNNConfig, init_params as init_gnn_params, synthetic_graph_dataset
 from s30bn.paper14_bahdanau_attention import (
     BahdanauConfig,
     forward_numpy as bahdanau_forward_numpy,
     init_params as init_bahdanau_params,
     sample_pair as sample_bahdanau_pair,
 )
+from s30bn.paper17_vae import VAEConfig, forward_numpy as vae_forward_numpy, init_params as init_vae_params, synthetic_binary_data
 from s30bn.paper15_identity_mappings import (
     IdentityResNetConfig,
     init_params as init_identity_params,
@@ -59,12 +61,14 @@ from s30bn.paper18_relational_rnn import (
     forward_numpy as relational_rnn_forward_numpy,
     init_params as init_relational_rnn_params,
 )
+from s30bn.paper09_gpipe import GPipeConfig, forward_numpy as gpipe_forward_numpy, init_params as init_gpipe_params, synthetic_pipeline_batch
 from s30bn.paper20_neural_turing_machine import (
     NTMConfig,
     build_dataset as build_ntm_dataset,
     forward_numpy as ntm_forward_numpy,
     init_params as init_ntm_params,
 )
+from s30bn.paper21_ctc import CTCConfig, forward_numpy as ctc_forward_numpy, init_params as init_ctc_params, synthetic_ctc_batch
 from s30bn.paper26_cs231n import CNNConfig, init_params as init_cnn_params, synthetic_cifar_like
 
 
@@ -97,6 +101,13 @@ def run_07() -> None:
     print(f"paper 07 conv1 kernel shape: {params['conv1_w'].shape}")
 
 
+def run_09() -> None:
+    config = GPipeConfig()
+    batch, labels = synthetic_pipeline_batch(config)
+    result = gpipe_forward_numpy(init_gpipe_params(config), batch, labels, config)
+    print(f"paper 09 numpy loss: {result['loss']:.6f}")
+
+
 def run_10() -> None:
     config = ResNetConfig()
     images, labels = synthetic_residual_dataset(config)
@@ -111,6 +122,15 @@ def run_11() -> None:
     params = init_dilated_params(config)
     print(f"paper 11 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
     print(f"paper 11 dilated kernel base shape: {params['dilated_w'].shape}")
+
+
+def run_12() -> None:
+    config = GNNConfig()
+    graphs, adjacency, labels = synthetic_graph_dataset(config)
+    params = init_gnn_params(config)
+    print(f"paper 12 graphs shape: {graphs.shape}, labels: {labels.tolist()}")
+    print(f"paper 12 message weight shape: {params['W_msg'].shape}")
+    print(f"paper 12 adjacency shape: {adjacency.shape}")
 
 
 def run_14() -> None:
@@ -136,6 +156,13 @@ def run_16() -> None:
     print(f"paper 16 relation head shape: {params['f_w'].shape}")
 
 
+def run_17() -> None:
+    config = VAEConfig()
+    data = synthetic_binary_data()
+    result = vae_forward_numpy(init_vae_params(config), data, config)
+    print(f"paper 17 numpy loss: {result['loss']:.6f}")
+
+
 def run_18() -> None:
     config = RelationalRNNConfig()
     inputs, targets = build_relational_rnn_dataset(config)
@@ -150,6 +177,13 @@ def run_20() -> None:
     print(f"paper 20 numpy loss: {result['loss']:.6f}")
 
 
+def run_21() -> None:
+    config = CTCConfig()
+    features, targets = synthetic_ctc_batch()
+    result = ctc_forward_numpy(init_ctc_params(config), features, targets, config)
+    print(f"paper 21 numpy loss: {result['loss']:.6f}")
+
+
 def run_26() -> None:
     config = CNNConfig()
     images, labels = synthetic_cifar_like(config)
@@ -160,20 +194,24 @@ def run_26() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "10", "11", "14", "15", "16", "18", "20", "26"])
+    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "09", "10", "11", "12", "14", "15", "16", "17", "18", "20", "21", "26"])
     args = parser.parse_args()
     {
         "02": run_02,
         "03": run_03,
         "04": run_04,
         "07": run_07,
+        "09": run_09,
         "10": run_10,
         "11": run_11,
+        "12": run_12,
         "14": run_14,
         "15": run_15,
         "16": run_16,
+        "17": run_17,
         "18": run_18,
         "20": run_20,
+        "21": run_21,
         "26": run_26,
     }[args.paper]()
 

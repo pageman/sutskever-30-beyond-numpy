@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad CTC-style backend.
+
+It uses the smallest nontrivial alignment case so the marginal remains visible and differentiable.

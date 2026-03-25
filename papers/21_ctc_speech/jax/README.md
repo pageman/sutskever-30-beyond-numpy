@@ -1,3 +1,5 @@
 # JAX
 
-Functional executable implementation and parity target.
+`impl.py` keeps the same tiny alignment marginal in functional form.
+
+This is a parity target for the educational derivation rather than a large speech model.

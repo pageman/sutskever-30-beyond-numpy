@@ -1,3 +1,5 @@
 # JAX
 
-Functional executable implementation and parity target.
+`impl.py` expresses the same message-passing step in functional form.
+
+That makes it a useful parity target for aggregation behavior.

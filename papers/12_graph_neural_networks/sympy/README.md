@@ -1,3 +1,6 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+This layer focuses on local message aggregation.
+
+- `derivations.py` encodes a scalar message sum over neighbors.
+- The useful symbolic point is the additive structure of aggregation.
