@@ -59,6 +59,7 @@ Verification telemetry note:
 - this repo exposes a generated [`verification.yaml`](verification.yaml) as an observability artifact, not as a correctness certificate
 - the point is to record what was present, executed, typechecked, and last refreshed
 - the point is not to claim full reproduction or full formal verification
+- for theory-heavy papers, the notes and telemetry can also record proxy scope and claim coverage rather than pretending the executable toy fully captures the paper
 
 ## Why This Pipeline
 

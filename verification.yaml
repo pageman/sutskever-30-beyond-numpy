@@ -1,6 +1,6 @@
 schema_version: 2
-generated_at: "2026-03-25T05:08:39.539503+00:00"
-checked_commit: "c9a9e4814622c6bce72c0247933d9b8790649933"
+generated_at: "2026-03-25T05:16:57.170755+00:00"
+checked_commit: "5f706a622579b3c2bce198ea0c3b9b90b3f95f45"
 artifact_commit: null
 git_branch: "main"
 repo_checks:
@@ -48,6 +48,11 @@ papers:
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    proxy_scope: "toy state-scoring proxy for local complexity-sensitive behavior, not a law of open-ended complexity growth."
+    claim_coverage: "low"
+    measured_regime: "deterministic low-dimensional state vectors with supervised labels."
+    failure_modes: "proxy can suggest classifier stability while saying almost nothing about actual long-horizon complexity dynamics."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "02"
     slug: "char_rnn_karpathy"
     title: "02 The Unreasonable Effectiveness of Recurrent Neural Networks"
@@ -606,6 +611,11 @@ papers:
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    proxy_scope: "toy state-classification proxy for automaton-like transitions, not a full automata-theoretic account of the paper."
+    claim_coverage: "low"
+    measured_regime: "discrete low-cardinality state encodings with deterministic labels."
+    failure_modes: "can overstate confidence in a classifier surrogate where the real paper interest is dynamical structure, not label prediction."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "20"
     slug: "neural_turing_machine"
     title: "20 Neural Turing Machines"
@@ -730,6 +740,11 @@ papers:
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    proxy_scope: "regularized classifier proxy for MDL-style tradeoffs between fit and model cost."
+    claim_coverage: "medium"
+    measured_regime: "finite-dimensional supervised loss decomposition under quadratic parameter cost."
+    failure_modes: "the executable object does not represent full coding-theoretic MDL or universal coding arguments."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "24"
     slug: "machine_super_intelligence"
     title: "24 Machine Super Intelligence"
@@ -761,6 +776,11 @@ papers:
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    proxy_scope: "schematic capability-aggregation classifier, not a model of superintelligence in any strong theoretical or sociotechnical sense."
+    claim_coverage: "low"
+    measured_regime: "deterministic capability vectors and simple aggregation-to-label mapping."
+    failure_modes: "can falsely suggest explanatory adequacy because the executable object is much narrower than the underlying argument."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "25"
     slug: "kolmogorov_complexity"
     title: "25 Kolmogorov Complexity"
@@ -792,6 +812,11 @@ papers:
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    proxy_scope: "compressibility-sensitive classifier proxy, not a computation of true Kolmogorov complexity."
+    claim_coverage: "low-to-medium"
+    measured_regime: "short synthetic sequences and proxy regularity labels."
+    failure_modes: "apparent empirical success can be mistaken for access to uncomputable complexity rather than a surrogate signal."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "26"
     slug: "cs231n_cnn_fundamentals"
     title: "26 CS231n CNNs for Visual Recognition"

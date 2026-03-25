@@ -43,6 +43,12 @@ def parse_note_status(notes_path: Path, label: str) -> str:
     return match.group(1).strip() if match else "unknown"
 
 
+def parse_note_field(notes_path: Path, label: str) -> str | None:
+    text = notes_path.read_text()
+    match = re.search(rf"- {re.escape(label)}:\s*(.+)", text)
+    return match.group(1).strip() if match else None
+
+
 def bool_yaml(value: bool) -> str:
     return "true" if value else "false"
 
@@ -111,6 +117,11 @@ def paper_status(paper_dir: Path, repo_checks: dict[str, dict[str, object]]) -> 
         "tests_file_present": any(paper_dir.joinpath("tests").glob("test_*.py")),
         "tests_passed": bool(repo_checks["pytest"]["passed"]),
         "run_paper_passed": bool(repo_checks["run_papers"]["passed"]),
+        "proxy_scope": parse_note_field(notes_path, "Proxy scope"),
+        "claim_coverage": parse_note_field(notes_path, "Claim coverage"),
+        "measured_regime": parse_note_field(notes_path, "Measured regime"),
+        "failure_modes": parse_note_field(notes_path, "Failure modes"),
+        "capability_cartography_note": parse_note_field(notes_path, "Capability cartography note"),
     }
 
 
@@ -174,6 +185,10 @@ def render_yaml(
                 4,
             )
         )
+        for field in ("proxy_scope", "claim_coverage", "measured_regime", "failure_modes", "capability_cartography_note"):
+            value = paper.get(field)
+            if value is not None:
+                lines.extend(indent([f"{field}: {quote_yaml(str(value))}"], 4))
     return "\n".join(lines) + "\n"
 
 
