@@ -18,11 +18,10 @@ run-26:
 agda-check: agda-check-02 agda-check-03 agda-check-26
 
 agda-check-02:
-	$(AGDA) -i . papers/02_char_rnn_karpathy/cubical-agda/CharRNN.agda
+	$(AGDA) -i papers/02_char_rnn_karpathy/cubical-agda -i . papers/02_char_rnn_karpathy/cubical-agda/CharRNN.agda
 
 agda-check-03:
-	$(AGDA) -i . papers/03_lstm_understanding/cubical-agda/LSTM.agda
+	$(AGDA) -i papers/03_lstm_understanding/cubical-agda -i . papers/03_lstm_understanding/cubical-agda/LSTM.agda
 
 agda-check-26:
-	$(AGDA) -i . papers/26_cs231n_cnn_fundamentals/cubical-agda/CNN.agda
-
+	$(AGDA) -i papers/26_cs231n_cnn_fundamentals/cubical-agda -i . papers/26_cs231n_cnn_fundamentals/cubical-agda/CNN.agda
