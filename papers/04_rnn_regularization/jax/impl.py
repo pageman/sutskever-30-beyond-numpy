@@ -1,11 +1,11 @@
-"""Minimal NumPy sanity checks for paper 04."""
+"""JAX implementation wrapper for paper 04."""
 
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
@@ -13,20 +13,19 @@ if str(SRC) not in sys.path:
 from s30bn.paper04_rnn_regularization import (
     RNNRegularizationConfig,
     build_dataset,
-    forward_numpy,
+    forward_jax,
     init_params,
+    params_to_jax,
 )
 
 
 def main() -> None:
     config = RNNRegularizationConfig()
     inputs, targets = build_dataset(config)
-    result = forward_numpy(init_params(config), inputs, targets, config)
-    print("inputs=", inputs.tolist())
-    print("targets=", targets.tolist())
-    print(f"loss={result['loss']:.6f}")
-    print("input_mask=", result["input_mask"].tolist())
-    print("hidden_mask=", result["hidden_mask"].tolist())
+    params = params_to_jax(init_params(config))
+    loss, logits = forward_jax(params, inputs, targets, config)
+    print(f"jax loss: {float(loss):.6f}")
+    print("logits shape:", tuple(logits.shape))
 
 
 if __name__ == "__main__":

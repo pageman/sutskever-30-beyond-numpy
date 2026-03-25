@@ -24,6 +24,19 @@ from s30bn.paper03_lstm import (
     forward_numpy as lstm_forward_numpy,
     init_params as init_lstm_params,
 )
+from s30bn.paper04_rnn_regularization import (
+    RNNRegularizationConfig,
+    build_dataset as build_rnnreg_dataset,
+    forward_numpy as rnnreg_forward_numpy,
+    init_params as init_rnnreg_params,
+)
+from s30bn.paper07_alexnet import AlexNetConfig, init_params as init_alexnet_params, synthetic_imagenet_like
+from s30bn.paper10_resnet import ResNetConfig, init_params as init_resnet_params, synthetic_residual_dataset
+from s30bn.paper15_identity_mappings import (
+    IdentityResNetConfig,
+    init_params as init_identity_params,
+    synthetic_identity_dataset,
+)
 from s30bn.paper26_cs231n import CNNConfig, init_params as init_cnn_params, synthetic_cifar_like
 
 
@@ -41,6 +54,37 @@ def run_03() -> None:
     print(f"paper 03 numpy loss: {result['loss']:.6f}")
 
 
+def run_04() -> None:
+    config = RNNRegularizationConfig()
+    inputs, targets = build_rnnreg_dataset(config)
+    result = rnnreg_forward_numpy(init_rnnreg_params(config), inputs, targets, config)
+    print(f"paper 04 numpy loss: {result['loss']:.6f}")
+
+
+def run_07() -> None:
+    config = AlexNetConfig()
+    images, labels = synthetic_imagenet_like(config)
+    params = init_alexnet_params(config)
+    print(f"paper 07 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
+    print(f"paper 07 conv1 kernel shape: {params['conv1_w'].shape}")
+
+
+def run_10() -> None:
+    config = ResNetConfig()
+    images, labels = synthetic_residual_dataset(config)
+    params = init_resnet_params(config)
+    print(f"paper 10 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
+    print(f"paper 10 stem kernel shape: {params['stem_w'].shape}")
+
+
+def run_15() -> None:
+    config = IdentityResNetConfig()
+    images, labels = synthetic_identity_dataset(config)
+    params = init_identity_params(config)
+    print(f"paper 15 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
+    print(f"paper 15 residual kernel shape: {params['conv1_w'].shape}")
+
+
 def run_26() -> None:
     config = CNNConfig()
     images, labels = synthetic_cifar_like(config)
@@ -51,9 +95,17 @@ def run_26() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "26"])
+    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "10", "15", "26"])
     args = parser.parse_args()
-    {"02": run_02, "03": run_03, "26": run_26}[args.paper]()
+    {
+        "02": run_02,
+        "03": run_03,
+        "04": run_04,
+        "07": run_07,
+        "10": run_10,
+        "15": run_15,
+        "26": run_26,
+    }[args.paper]()
 
 
 if __name__ == "__main__":

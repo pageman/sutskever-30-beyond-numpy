@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad residual network.
+
+This backend is valuable here because the skip addition stays completely visible while still running through autograd.

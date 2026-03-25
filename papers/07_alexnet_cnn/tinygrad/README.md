@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad convolutional classifier.
+
+This backend is useful here because the conv stack is still small enough to inspect without giving up automatic differentiation.
