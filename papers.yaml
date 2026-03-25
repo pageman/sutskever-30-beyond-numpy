@@ -9,6 +9,7 @@ papers:
     baseline_notebook: "01_complexity_dynamics.ipynb"
     notes:
       sympy: "Always present; likely thin and mostly explanatory."
+      tinygrad: "Always present; likely minimal and mostly ceremonial for this paper."
       cubical_agda: "Always present; likely a minimal formalization of state evolution and invariants."
   - id: "02"
     slug: "char_rnn_karpathy"
@@ -20,6 +21,7 @@ papers:
     baseline_notebook: "02_char_rnn_karpathy.ipynb"
     notes:
       sympy: "Useful for recurrence and gradient derivations."
+      tinygrad: "Useful as the first executable autodiff backend for the recurrence."
       cubical_agda: "Useful for sequence/state typing and recurrence structure."
   - id: "03"
     slug: "lstm_understanding"
@@ -31,6 +33,7 @@ papers:
     baseline_notebook: "03_lstm_understanding.ipynb"
     notes:
       sympy: "Useful for gate equations and gradient bookkeeping."
+      tinygrad: "Useful as a compact executable implementation of the gate equations."
       cubical_agda: "Useful for typed gate composition and recurrent state structure."
   - id: "04"
     slug: "rnn_regularization"
@@ -42,6 +45,7 @@ papers:
     baseline_notebook: "04_rnn_regularization.ipynb"
     notes:
       sympy: "Present, but much of the value is explanatory rather than computational."
+      tinygrad: "Present; useful for small sequence experiments but still secondary to Torch."
       cubical_agda: "Present, but likely thin beyond masks and recurrence interfaces."
   - id: "05"
     slug: "neural_network_pruning"
@@ -53,6 +57,7 @@ papers:
     baseline_notebook: "05_neural_network_pruning.ipynb"
     notes:
       sympy: "Present; symbolic leverage is limited."
+      tinygrad: "Present; useful for small pruning demos, but often mostly illustrative."
       cubical_agda: "Present; likely focused on sparsity and pruning predicates."
   - id: "06"
     slug: "pointer_networks"
@@ -64,6 +69,7 @@ papers:
     baseline_notebook: "06_pointer_networks.ipynb"
     notes:
       sympy: "Useful for attention score equations; otherwise limited."
+      tinygrad: "Present; a reasonable compact backend for the pointer mechanism on tiny inputs."
       cubical_agda: "Useful for index-selection invariants."
   - id: "07"
     slug: "alexnet_cnn"
@@ -75,6 +81,7 @@ papers:
     baseline_notebook: "07_alexnet_cnn.ipynb"
     notes:
       sympy: "Present, but mostly ceremonial beyond conv arithmetic and shape equations."
+      tinygrad: "Present; useful for a compact CNN implementation, though mostly pedagogical here."
       cubical_agda: "Present; useful mainly for tensor shape/index invariants."
   - id: "08"
     slug: "seq2seq_for_sets"
@@ -86,6 +93,7 @@ papers:
     baseline_notebook: "08_seq2seq_for_sets.ipynb"
     notes:
       sympy: "Present; moderate value for pooling and attention identities."
+      tinygrad: "Present; useful for small set-to-sequence prototypes."
       cubical_agda: "Useful for permutation-related invariants."
   - id: "09"
     slug: "gpipe"
@@ -97,6 +105,7 @@ papers:
     baseline_notebook: "09_gpipe.ipynb"
     notes:
       sympy: "Always present, but mostly superfluous."
+      tinygrad: "Always present, but likely thin because the systems angle matters more than the backend."
       cubical_agda: "Always present; useful for scheduling/state interfaces more than training dynamics."
   - id: "10"
     slug: "resnet_deep_residual"
@@ -108,6 +117,7 @@ papers:
     baseline_notebook: "10_resnet_deep_residual.ipynb"
     notes:
       sympy: "Present; value is limited to residual equations and simple Jacobian intuition."
+      tinygrad: "Present; useful for compact residual-block experiments."
       cubical_agda: "Useful for residual block composition and shape preservation."
   - id: "11"
     slug: "dilated_convolutions"
@@ -119,6 +129,7 @@ papers:
     baseline_notebook: "11_dilated_convolutions.ipynb"
     notes:
       sympy: "Present; mainly for receptive-field arithmetic."
+      tinygrad: "Present; useful for compact convolution experiments with dilation."
       cubical_agda: "Useful for index spacing and receptive-field structure."
   - id: "12"
     slug: "graph_neural_networks"
@@ -130,6 +141,7 @@ papers:
     baseline_notebook: "12_graph_neural_networks.ipynb"
     notes:
       sympy: "Present; moderate value for message aggregation equations."
+      tinygrad: "Present; useful for tiny message-passing examples, though less ergonomic than Torch."
       cubical_agda: "Useful for graph/message typing and aggregation laws."
   - id: "13"
     slug: "attention_is_all_you_need"
@@ -141,6 +153,7 @@ papers:
     baseline_notebook: "13_attention_is_all_you_need.ipynb"
     notes:
       sympy: "Useful for attention identities, but limited for full model mechanics."
+      tinygrad: "Present; useful for minimal attention blocks, but fuller models are more naturally checked in Torch/JAX."
       cubical_agda: "Useful for tensor interfaces and attention block composition."
   - id: "14"
     slug: "bahdanau_attention"
@@ -152,6 +165,7 @@ papers:
     baseline_notebook: "14_bahdanau_attention.ipynb"
     notes:
       sympy: "Useful for alignment-score equations."
+      tinygrad: "Present; useful for a compact encoder-decoder attention example."
       cubical_agda: "Useful for encoder-decoder interfaces."
   - id: "15"
     slug: "identity_mappings_resnet"
@@ -163,6 +177,7 @@ papers:
     baseline_notebook: "15_identity_mappings_resnet.ipynb"
     notes:
       sympy: "Present; mostly explanatory."
+      tinygrad: "Present; useful for compact residual and skip-path experiments."
       cubical_agda: "Useful for skip-path invariants and block equivalences."
   - id: "16"
     slug: "relational_reasoning"
@@ -174,6 +189,7 @@ papers:
     baseline_notebook: "16_relational_reasoning.ipynb"
     notes:
       sympy: "Present; moderate value for pairwise aggregation equations."
+      tinygrad: "Present; useful for small relation-network prototypes."
       cubical_agda: "Useful for relation typing and permutation-sensitive structure."
   - id: "17"
     slug: "variational_autoencoder"
@@ -185,6 +201,7 @@ papers:
     baseline_notebook: "17_variational_autoencoder.ipynb"
     notes:
       sympy: "Useful for ELBO and KL derivations."
+      tinygrad: "Present; useful for a compact VAE on tiny synthetic data."
       cubical_agda: "Present; likely thin beyond latent-variable interfaces."
   - id: "18"
     slug: "relational_rnn"
@@ -196,6 +213,7 @@ papers:
     baseline_notebook: "18_relational_rnn.ipynb"
     notes:
       sympy: "Present; useful for selected subexpressions, not full backprop."
+      tinygrad: "Present; useful for small memory/attention experiments but still secondary to Torch."
       cubical_agda: "Useful for memory-slot structure and attention interfaces."
   - id: "19"
     slug: "coffee_automaton"
@@ -207,6 +225,7 @@ papers:
     baseline_notebook: "19_coffee_automaton.ipynb"
     notes:
       sympy: "Always present; mostly explanatory."
+      tinygrad: "Always present; likely minimal and mostly ceremonial for this paper."
       cubical_agda: "Always present; likely a minimal formalization of automaton rules."
   - id: "20"
     slug: "neural_turing_machine"
@@ -218,6 +237,7 @@ papers:
     baseline_notebook: "20_neural_turing_machine.ipynb"
     notes:
       sympy: "Present; useful for addressing equations."
+      tinygrad: "Present; useful for tiny addressing experiments but likely thin for the full system."
       cubical_agda: "Useful for memory/addressing interfaces and invariants."
   - id: "21"
     slug: "ctc_speech"
@@ -229,6 +249,7 @@ papers:
     baseline_notebook: "21_ctc_speech.ipynb"
     notes:
       sympy: "Present, but dynamic-programming structure matters more than symbolic algebra."
+      tinygrad: "Present; likely thin because the dynamic-programming structure matters more than backend choice."
       cubical_agda: "Useful for path/alignment state structure."
   - id: "22"
     slug: "scaling_laws"
@@ -240,6 +261,7 @@ papers:
     baseline_notebook: "22_scaling_laws.ipynb"
     notes:
       sympy: "Always present, but mostly superfluous."
+      tinygrad: "Always present; likely minimal because the analysis matters more than the backend."
       cubical_agda: "Always present; likely only a minimal statement of fitted-law structure."
   - id: "23"
     slug: "mdl_principle"
@@ -251,6 +273,7 @@ papers:
     baseline_notebook: "23_mdl_principle.ipynb"
     notes:
       sympy: "Useful for code-length expressions and comparisons."
+      tinygrad: "Present; likely minimal because executable training is not the main point."
       cubical_agda: "Useful for formalizing simple description-length relations."
   - id: "24"
     slug: "machine_super_intelligence"
@@ -262,6 +285,7 @@ papers:
     baseline_notebook: "24_machine_super_intelligence.ipynb"
     notes:
       sympy: "Always present; mostly explanatory."
+      tinygrad: "Always present; likely minimal and mostly ceremonial for this paper."
       cubical_agda: "Always present; likely thin and focused on minimal formal interfaces."
   - id: "25"
     slug: "kolmogorov_complexity"
@@ -273,6 +297,7 @@ papers:
     baseline_notebook: "25_kolmogorov_complexity.ipynb"
     notes:
       sympy: "Present; limited but still useful for notation and inequalities."
+      tinygrad: "Present; likely minimal because executable training is not the central object."
       cubical_agda: "Present; useful for minimal formal statements, not computable realization."
   - id: "26"
     slug: "cs231n_cnn_fundamentals"
@@ -284,6 +309,7 @@ papers:
     baseline_notebook: "26_cs231n_cnn_fundamentals.ipynb"
     notes:
       sympy: "Present; mostly for small derivations and notation."
+      tinygrad: "Useful as the first compact executable CNN backend."
       cubical_agda: "Present; useful for tensor shape discipline and layer composition."
   - id: "27"
     slug: "multi_token_prediction"
@@ -295,6 +321,7 @@ papers:
     baseline_notebook: "27_multi_token_prediction.ipynb"
     notes:
       sympy: "Always present; mostly superfluous."
+      tinygrad: "Always present; likely thin beyond a small next-token prototype."
       cubical_agda: "Always present; likely thin beyond interface-level formalization."
   - id: "28"
     slug: "dense_passage_retrieval"
@@ -306,6 +333,7 @@ papers:
     baseline_notebook: "28_dense_passage_retrieval.ipynb"
     notes:
       sympy: "Always present; little symbolic leverage."
+      tinygrad: "Always present; likely thin because retrieval system structure matters more than backend minimalism."
       cubical_agda: "Always present; useful mainly for encoder/retriever interface signatures."
   - id: "29"
     slug: "rag"
@@ -317,6 +345,7 @@ papers:
     baseline_notebook: "29_rag.ipynb"
     notes:
       sympy: "Always present; mostly explanatory."
+      tinygrad: "Always present; likely thin because composition of components matters more than a tiny backend."
       cubical_agda: "Always present; likely thin beyond component composition."
   - id: "30"
     slug: "lost_in_middle"
@@ -328,4 +357,5 @@ papers:
     baseline_notebook: "30_lost_in_middle.ipynb"
     notes:
       sympy: "Always present; mostly superfluous."
+      tinygrad: "Always present; likely minimal because the evaluation setup matters more than the backend."
       cubical_agda: "Always present; likely a minimal formal treatment of position/index behavior."

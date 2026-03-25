@@ -46,3 +46,11 @@ Sequence loss:
 - Sequence length: `5`
 - Vocabulary: `"helo wrd"`
 - Tiny batch: first five characters and their next-character targets
+
+## Backend Order
+
+- `SymPy`
+- `tinygrad`
+- `PyTorch`
+- `JAX`
+- `Cubical Agda`

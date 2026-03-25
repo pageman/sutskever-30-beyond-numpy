@@ -41,3 +41,11 @@ For concatenated input `z_t = [x_t ; h_(t-1)]`:
 - Text: `"hello hello world "`
 - Sequence length: `5`
 - Vocabulary: `"helo wrd"`
+
+## Backend Order
+
+- `SymPy`
+- `tinygrad`
+- `PyTorch`
+- `JAX`
+- `Cubical Agda`

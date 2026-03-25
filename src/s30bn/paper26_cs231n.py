@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Dict, Tuple
+import os
 
 import jax
 import jax.numpy as jnp
 import numpy as np
 import torch
 import torch.nn.functional as F
+os.environ.setdefault("LLVM", "1")
+from tinygrad import Tensor
 
 from s30bn.common import ArrayDict, seeded_rng
 
@@ -60,6 +63,24 @@ def params_to_torch(params: ArrayDict) -> Dict[str, torch.Tensor]:
     return {key: torch.tensor(value, dtype=torch.float64, requires_grad=True) for key, value in params.items()}
 
 
+def params_to_tinygrad(params: ArrayDict) -> Dict[str, Tensor]:
+    return {key: Tensor(value, requires_grad=True) for key, value in params.items()}
+
+
+def forward_tinygrad(
+    params: Dict[str, Tensor],
+    images: np.ndarray,
+    labels: np.ndarray,
+) -> Tuple[Tensor, Tensor]:
+    x = Tensor(images, dtype=params["conv_w"].dtype)
+    conv = x.conv2d(params["conv_w"], bias=params["conv_b"], padding=1)
+    act = conv.relu()
+    pooled = act.mean(axis=(2, 3))
+    logits = pooled @ params["fc_w"].transpose() + params["fc_b"]
+    loss = logits.sparse_categorical_crossentropy(Tensor(labels.tolist()))
+    return loss, logits
+
+
 def forward_torch(
     params: Dict[str, torch.Tensor],
     images: np.ndarray,
@@ -86,6 +107,20 @@ def train_step_torch(
         for tensor in params.values():
             tensor -= learning_rate * tensor.grad
             tensor.grad.zero_()
+    return float(loss.item())
+
+
+def train_step_tinygrad(
+    params: Dict[str, Tensor],
+    images: np.ndarray,
+    labels: np.ndarray,
+    learning_rate: float,
+) -> float:
+    loss, _ = forward_tinygrad(params, images, labels)
+    loss.backward()
+    for tensor in params.values():
+        tensor.assign((tensor - learning_rate * tensor.grad).detach())
+        tensor.grad = None
     return float(loss.item())
 
 

@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Dict, Tuple
+import os
 
 import jax
 import jax.numpy as jnp
 import numpy as np
 import torch
 import torch.nn.functional as F
+os.environ.setdefault("LLVM", "1")
+from tinygrad import Tensor
 
 from s30bn.common import ArrayDict, one_hot, seeded_rng
 
@@ -99,6 +102,34 @@ def params_to_torch(params: ArrayDict) -> Dict[str, torch.Tensor]:
     return {key: torch.tensor(value, dtype=torch.float64, requires_grad=True) for key, value in params.items()}
 
 
+def params_to_tinygrad(params: ArrayDict) -> Dict[str, Tensor]:
+    return {key: Tensor(value, requires_grad=True) for key, value in params.items()}
+
+
+def forward_tinygrad(
+    params: Dict[str, Tensor],
+    inputs: np.ndarray,
+    targets: np.ndarray,
+) -> Tuple[Tensor, Tensor]:
+    xs = one_hot(inputs, depth=int(params["by"].shape[0]))
+    h = Tensor.zeros(int(params["bf"].shape[0]), dtype=params["bf"].dtype)
+    c = Tensor.zeros(int(params["bf"].shape[0]), dtype=params["bf"].dtype)
+    logits = []
+    for x_t in xs:
+        x_tensor = Tensor(x_t, dtype=params["Wf"].dtype)
+        z = x_tensor.cat(h, dim=0)
+        f_t = (params["Wf"] @ z + params["bf"]).sigmoid()
+        i_t = (params["Wi"] @ z + params["bi"]).sigmoid()
+        o_t = (params["Wo"] @ z + params["bo"]).sigmoid()
+        g_t = (params["Wc"] @ z + params["bc"]).tanh()
+        c = f_t * c + i_t * g_t
+        h = o_t * c.tanh()
+        logits.append(params["Why"] @ h + params["by"])
+    logits_tensor = logits[0].stack(*logits[1:])
+    loss = logits_tensor.sparse_categorical_crossentropy(Tensor(targets.tolist()))
+    return loss, logits_tensor
+
+
 def forward_torch(
     params: Dict[str, torch.Tensor],
     inputs: np.ndarray,
@@ -134,6 +165,20 @@ def train_step_torch(
         for tensor in params.values():
             tensor -= learning_rate * tensor.grad
             tensor.grad.zero_()
+    return float(loss.item())
+
+
+def train_step_tinygrad(
+    params: Dict[str, Tensor],
+    inputs: np.ndarray,
+    targets: np.ndarray,
+    learning_rate: float,
+) -> float:
+    loss, _ = forward_tinygrad(params, inputs, targets)
+    loss.backward()
+    for tensor in params.values():
+        tensor.assign((tensor - learning_rate * tensor.grad).detach())
+        tensor.grad = None
     return float(loss.item())
 
 

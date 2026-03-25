@@ -41,3 +41,11 @@ Provide a tiny but real convolutional classifier that reflects the CS231n progre
   - `1`: horizontal stripes
   - `2`: diagonals
   - `3`: centered block
+
+## Backend Order
+
+- `SymPy`
+- `tinygrad`
+- `PyTorch`
+- `JAX`
+- `Cubical Agda`

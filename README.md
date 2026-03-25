@@ -11,6 +11,7 @@ This repository keeps the original paper numbering for compatibility, but tracks
 
 - Python project metadata: [`pyproject.toml`](/Users/hifi/sutskever-30-beyond-numpy/pyproject.toml)
 - Demo runner: [`scripts/run_paper.py`](/Users/hifi/sutskever-30-beyond-numpy/scripts/run_paper.py)
+- tinygrad installer helper: [`scripts/install_tinygrad.sh`](/Users/hifi/sutskever-30-beyond-numpy/scripts/install_tinygrad.sh)
 - Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](/Users/hifi/sutskever-30-beyond-numpy/sutskever-30-beyond-numpy.agda-lib)
 - Agda setup notes: [`docs/AGDA_SETUP.md`](/Users/hifi/sutskever-30-beyond-numpy/docs/AGDA_SETUP.md)
 
@@ -21,13 +22,17 @@ Per paper, the expected implementation pipeline is:
 1. `spec.md`
 2. `numpy_checks.py`
 3. `sympy/`
-4. `torch/`
-5. `jax/`
-6. `cubical-agda/`
+4. `tinygrad/`
+5. `torch/`
+6. `jax/`
+7. `cubical-agda/`
 
 Rules:
 - `NumPy` is minimal and exists only for sanity checks, fixtures, baseline comparisons, and executable pseudocode.
 - `SymPy` is always present, even if the note says symbolic treatment is mostly ceremonial for that paper.
+- `tinygrad` is always present, even if the note says the backend is mostly ceremonial for that paper.
+- `tinygrad` is the first minimal executable autodiff backend.
+- This repo defaults tinygrad to the `LLVM` backend inside the tinygrad-specific code paths when no tinygrad backend env var is already set.
 - `PyTorch` is the primary executable training implementation.
 - `JAX` is the second executable implementation and a cross-check on functional structure.
 - `Cubical Agda` is always present, even if the note says the formalization is intentionally thin.
@@ -58,6 +63,7 @@ Each paper directory contains:
 - `NOTES.md`
 - `numpy_checks.py`
 - `sympy/`
+- `tinygrad/`
 - `torch/`
 - `jax/`
 - `cubical-agda/`
@@ -124,3 +130,13 @@ To make that persistent in `zsh`, add this line to `~/.zshrc`:
 ```bash
 export PATH="/Users/hifi/Library/Python/3.9/bin:$PATH"
 ```
+
+## tinygrad Install
+
+For this repo, use:
+
+```bash
+./scripts/install_tinygrad.sh
+```
+
+That installs `tinygrad` without the failing optional macOS Metal dependency chain. The repo's tinygrad code then defaults to `LLVM` unless you explicitly choose another tinygrad backend.
