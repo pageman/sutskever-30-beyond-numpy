@@ -280,7 +280,7 @@ That installs `tinygrad` without the failing optional macOS Metal dependency cha
 
 ## License
 
-Educational use. See individual papers for original research citations.
+Educational use under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. See individual papers for original research citations.
 
 ## Citation
 
