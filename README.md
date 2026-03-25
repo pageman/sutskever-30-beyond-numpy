@@ -42,6 +42,11 @@ Rules:
 - `JAX` is the second executable implementation and a cross-check on functional structure.
 - `Cubical Agda` is always present, even if the note says the formalization is intentionally thin.
 
+Agda status note:
+- `make agda-check` means the Cubical Agda layer typechecks successfully.
+- It does not mean the whole paper is formally verified.
+- In many papers here, the Agda layer is intentionally minimal and captures only a formal core, interface, or invariant slice.
+
 ## Why This Pipeline
 
 This repository is not trying to collect random backend ports. The point of the stack is that each layer answers a different question about the same paper.
