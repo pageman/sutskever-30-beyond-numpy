@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. DPR is still simple enough here that the dual-encoder contrastive path remains easy to inspect.

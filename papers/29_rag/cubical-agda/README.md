@@ -1,3 +1,3 @@
 # Cubical Agda
 
-Formalization layer. Keep present even when intentionally minimal.
+Formalization layer. The useful slice is the typed distinction between retrieved evidence and produced output.

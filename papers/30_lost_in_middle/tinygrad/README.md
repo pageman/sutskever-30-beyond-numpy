@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. This layer is thinner here than in the core architecture papers, but it still exposes the position-bias mechanism directly.

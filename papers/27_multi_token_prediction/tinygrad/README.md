@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. This is a natural tinygrad use case because the model is just a shared trunk plus parallel token heads.

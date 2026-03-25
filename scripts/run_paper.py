@@ -73,6 +73,10 @@ from s30bn.paper20_neural_turing_machine import (
 )
 from s30bn.paper21_ctc import CTCConfig, forward_numpy as ctc_forward_numpy, init_params as init_ctc_params, synthetic_ctc_batch
 from s30bn.paper22_scaling_laws import forward_numpy as scaling_forward_numpy, init_params as init_scaling_params, synthetic_scaling_data
+from s30bn.paper27_multi_token_prediction import MultiTokenConfig, forward_numpy as mtp_forward_numpy, init_params as init_mtp_params, synthetic_mtp_batch
+from s30bn.paper28_dense_passage_retrieval import DPRConfig, forward_numpy as dpr_forward_numpy, init_params as init_dpr_params, synthetic_dpr_batch
+from s30bn.paper29_rag import RAGConfig, forward_numpy as rag_forward_numpy, init_params as init_rag_params, synthetic_rag_batch
+from s30bn.paper30_lost_in_middle import LostMiddleConfig, forward_numpy as lost_middle_forward_numpy, init_params as init_lost_middle_params, synthetic_middle_batch
 from s30bn.paper26_cs231n import CNNConfig, init_params as init_cnn_params, synthetic_cifar_like
 
 
@@ -223,9 +227,37 @@ def run_26() -> None:
     print(f"paper 26 conv kernel shape: {params['conv_w'].shape}")
 
 
+def run_27() -> None:
+    config = MultiTokenConfig()
+    contexts, targets = synthetic_mtp_batch()
+    result = mtp_forward_numpy(init_mtp_params(config), contexts, targets)
+    print(f"paper 27 numpy loss: {result['loss']:.6f}")
+
+
+def run_28() -> None:
+    config = DPRConfig()
+    queries, passages, targets = synthetic_dpr_batch()
+    result = dpr_forward_numpy(init_dpr_params(config), queries, passages, targets)
+    print(f"paper 28 numpy loss: {result['loss']:.6f}")
+
+
+def run_29() -> None:
+    config = RAGConfig()
+    queries, passages, targets = synthetic_rag_batch()
+    result = rag_forward_numpy(init_rag_params(config), queries, passages, targets)
+    print(f"paper 29 numpy loss: {result['loss']:.6f}")
+
+
+def run_30() -> None:
+    config = LostMiddleConfig()
+    chunks, queries, targets = synthetic_middle_batch()
+    result = lost_middle_forward_numpy(init_lost_middle_params(config), chunks, queries, targets)
+    print(f"paper 30 numpy loss: {result['loss']:.6f}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20", "21", "22", "26"])
+    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20", "21", "22", "26", "27", "28", "29", "30"])
     args = parser.parse_args()
     {
         "02": run_02,
@@ -248,6 +280,10 @@ def main() -> None:
         "21": run_21,
         "22": run_22,
         "26": run_26,
+        "27": run_27,
+        "28": run_28,
+        "29": run_29,
+        "30": run_30,
     }[args.paper]()
 
 

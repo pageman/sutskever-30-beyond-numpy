@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+Symbolic work is partial here. The key useful object is the average of multiple cross-entropy terms over parallel token heads, not a full symbolic treatment of autoregressive factorization.

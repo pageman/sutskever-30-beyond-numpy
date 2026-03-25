@@ -1,10 +1,10 @@
 PYTHON := python3
 AGDA := agda
 
-.PHONY: test run-02 run-03 run-04 run-06 run-07 run-08 run-09 run-10 run-11 run-12 run-13 run-14 run-15 run-16 run-17 run-18 run-20 run-21 run-22 run-26 agda-check agda-check-02 agda-check-03 agda-check-04 agda-check-06 agda-check-07 agda-check-08 agda-check-09 agda-check-10 agda-check-11 agda-check-12 agda-check-13 agda-check-14 agda-check-15 agda-check-16 agda-check-17 agda-check-18 agda-check-20 agda-check-21 agda-check-22 agda-check-26
+.PHONY: test run-02 run-03 run-04 run-06 run-07 run-08 run-09 run-10 run-11 run-12 run-13 run-14 run-15 run-16 run-17 run-18 run-20 run-21 run-22 run-26 run-27 run-28 run-29 run-30 agda-check agda-check-02 agda-check-03 agda-check-04 agda-check-06 agda-check-07 agda-check-08 agda-check-09 agda-check-10 agda-check-11 agda-check-12 agda-check-13 agda-check-14 agda-check-15 agda-check-16 agda-check-17 agda-check-18 agda-check-20 agda-check-21 agda-check-22 agda-check-26 agda-check-27 agda-check-28 agda-check-29 agda-check-30
 
 test:
-	$(PYTHON) -m pytest papers/02_char_rnn_karpathy/tests/test_char_rnn.py papers/03_lstm_understanding/tests/test_lstm.py papers/04_rnn_regularization/tests/test_rnn_regularization.py papers/06_pointer_networks/tests/test_pointer_networks.py papers/07_alexnet_cnn/tests/test_alexnet.py papers/08_seq2seq_for_sets/tests/test_seq2seq_sets.py papers/09_gpipe/tests/test_gpipe.py papers/10_resnet_deep_residual/tests/test_resnet.py papers/11_dilated_convolutions/tests/test_dilated_convolutions.py papers/12_graph_neural_networks/tests/test_gnn.py papers/13_attention_is_all_you_need/tests/test_transformer.py papers/14_bahdanau_attention/tests/test_bahdanau_attention.py papers/15_identity_mappings_resnet/tests/test_identity_mappings.py papers/16_relational_reasoning/tests/test_relational_reasoning.py papers/17_variational_autoencoder/tests/test_vae.py papers/18_relational_rnn/tests/test_relational_rnn.py papers/20_neural_turing_machine/tests/test_ntm.py papers/21_ctc_speech/tests/test_ctc.py papers/22_scaling_laws/tests/test_scaling_laws.py papers/26_cs231n_cnn_fundamentals/tests/test_cnn.py -q
+	$(PYTHON) -m pytest papers/02_char_rnn_karpathy/tests/test_char_rnn.py papers/03_lstm_understanding/tests/test_lstm.py papers/04_rnn_regularization/tests/test_rnn_regularization.py papers/06_pointer_networks/tests/test_pointer_networks.py papers/07_alexnet_cnn/tests/test_alexnet.py papers/08_seq2seq_for_sets/tests/test_seq2seq_sets.py papers/09_gpipe/tests/test_gpipe.py papers/10_resnet_deep_residual/tests/test_resnet.py papers/11_dilated_convolutions/tests/test_dilated_convolutions.py papers/12_graph_neural_networks/tests/test_gnn.py papers/13_attention_is_all_you_need/tests/test_transformer.py papers/14_bahdanau_attention/tests/test_bahdanau_attention.py papers/15_identity_mappings_resnet/tests/test_identity_mappings.py papers/16_relational_reasoning/tests/test_relational_reasoning.py papers/17_variational_autoencoder/tests/test_vae.py papers/18_relational_rnn/tests/test_relational_rnn.py papers/20_neural_turing_machine/tests/test_ntm.py papers/21_ctc_speech/tests/test_ctc.py papers/22_scaling_laws/tests/test_scaling_laws.py papers/26_cs231n_cnn_fundamentals/tests/test_cnn.py papers/27_multi_token_prediction/tests/test_multi_token_prediction.py papers/28_dense_passage_retrieval/tests/test_dense_passage_retrieval.py papers/29_rag/tests/test_rag.py papers/30_lost_in_middle/tests/test_lost_in_middle.py -q
 
 run-02:
 	$(PYTHON) scripts/run_paper.py --paper 02
@@ -66,7 +66,19 @@ run-22:
 run-26:
 	$(PYTHON) scripts/run_paper.py --paper 26
 
-agda-check: agda-check-02 agda-check-03 agda-check-04 agda-check-06 agda-check-07 agda-check-08 agda-check-09 agda-check-10 agda-check-11 agda-check-12 agda-check-13 agda-check-14 agda-check-15 agda-check-16 agda-check-17 agda-check-18 agda-check-20 agda-check-21 agda-check-22 agda-check-26
+run-27:
+	$(PYTHON) scripts/run_paper.py --paper 27
+
+run-28:
+	$(PYTHON) scripts/run_paper.py --paper 28
+
+run-29:
+	$(PYTHON) scripts/run_paper.py --paper 29
+
+run-30:
+	$(PYTHON) scripts/run_paper.py --paper 30
+
+agda-check: agda-check-02 agda-check-03 agda-check-04 agda-check-06 agda-check-07 agda-check-08 agda-check-09 agda-check-10 agda-check-11 agda-check-12 agda-check-13 agda-check-14 agda-check-15 agda-check-16 agda-check-17 agda-check-18 agda-check-20 agda-check-21 agda-check-22 agda-check-26 agda-check-27 agda-check-28 agda-check-29 agda-check-30
 
 agda-check-02:
 	$(AGDA) -i papers/02_char_rnn_karpathy/cubical-agda -i . papers/02_char_rnn_karpathy/cubical-agda/CharRNN.agda
@@ -127,3 +139,15 @@ agda-check-22:
 
 agda-check-26:
 	$(AGDA) -i papers/26_cs231n_cnn_fundamentals/cubical-agda -i . papers/26_cs231n_cnn_fundamentals/cubical-agda/CNN.agda
+
+agda-check-27:
+	$(AGDA) -i papers/27_multi_token_prediction/cubical-agda -i . papers/27_multi_token_prediction/cubical-agda/MultiTokenPrediction.agda
+
+agda-check-28:
+	$(AGDA) -i papers/28_dense_passage_retrieval/cubical-agda -i . papers/28_dense_passage_retrieval/cubical-agda/DensePassageRetrieval.agda
+
+agda-check-29:
+	$(AGDA) -i papers/29_rag/cubical-agda -i . papers/29_rag/cubical-agda/RAG.agda
+
+agda-check-30:
+	$(AGDA) -i papers/30_lost_in_middle/cubical-agda -i . papers/30_lost_in_middle/cubical-agda/LostInMiddle.agda

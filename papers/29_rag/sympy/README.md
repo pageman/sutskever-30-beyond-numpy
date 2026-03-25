@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+Symbolic treatment is minimal here. The useful object is the retrieval-weighted mixture distribution, not a full symbolic treatment of generation.
