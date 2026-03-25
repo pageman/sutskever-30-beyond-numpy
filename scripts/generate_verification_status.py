@@ -52,6 +52,10 @@ def quote_yaml(text: str) -> str:
     return f'"{escaped}"'
 
 
+def optional_quote_yaml(text: str | None) -> str:
+    return "null" if text is None else quote_yaml(text)
+
+
 def indent(lines: Iterable[str], n: int) -> list[str]:
     prefix = " " * n
     return [prefix + line if line else line for line in lines]
@@ -110,12 +114,20 @@ def paper_status(paper_dir: Path, repo_checks: dict[str, dict[str, object]]) -> 
     }
 
 
-def render_yaml(repo_checks: dict[str, dict[str, object]], papers: list[dict[str, object]]) -> str:
+def render_yaml(
+    repo_checks: dict[str, dict[str, object]],
+    papers: list[dict[str, object]],
+    *,
+    checked_commit: str,
+    artifact_commit: str | None,
+    git_branch: str,
+) -> str:
     lines: list[str] = []
-    lines.append("schema_version: 1")
+    lines.append("schema_version: 2")
     lines.append(f"generated_at: {quote_yaml(dt.datetime.now(dt.timezone.utc).isoformat())}")
-    lines.append(f"git_commit: {quote_yaml(git_output(['git', 'rev-parse', 'HEAD']))}")
-    lines.append(f"git_branch: {quote_yaml(git_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']))}")
+    lines.append(f"checked_commit: {quote_yaml(checked_commit)}")
+    lines.append(f"artifact_commit: {optional_quote_yaml(artifact_commit)}")
+    lines.append(f"git_branch: {quote_yaml(git_branch)}")
     lines.append("repo_checks:")
     for key, label in (("pytest", "python_test_suite"), ("agda", "agda_typecheck"), ("run_papers", "run_paper_sweep")):
         check = repo_checks[key]
@@ -172,7 +184,15 @@ def main() -> None:
         action="store_true",
         help="Refresh repo-level checks by running pytest, agda-check, and the run_paper sweep.",
     )
+    parser.add_argument(
+        "--artifact-commit",
+        default=None,
+        help="Optional commit hash for the commit that stores this artifact; normally left unset during ordinary generation.",
+    )
     args = parser.parse_args()
+
+    checked_commit = git_output(["git", "rev-parse", "HEAD"])
+    git_branch = git_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
 
     repo_checks = {
         "pytest": {"command": "python3 -m pytest -q", "passed": True, "exit_code": 0},
@@ -192,7 +212,15 @@ def main() -> None:
         }
 
     papers = [paper_status(path, repo_checks) for path in sorted(PAPERS_DIR.iterdir()) if path.is_dir()]
-    OUT_PATH.write_text(render_yaml(repo_checks, papers))
+    OUT_PATH.write_text(
+        render_yaml(
+            repo_checks,
+            papers,
+            checked_commit=checked_commit,
+            artifact_commit=args.artifact_commit,
+            git_branch=git_branch,
+        )
+    )
     print(f"wrote {OUT_PATH}")
 
 

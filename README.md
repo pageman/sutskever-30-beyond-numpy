@@ -387,8 +387,15 @@ It is meant to answer:
 - whether the Agda layer typechecked
 - whether the demo runner sweep completed
 - which layers are substantive, partial, minimal, or ceremonial
+- which commit was actually checked, even when the artifact is committed later
 
 It is intentionally not framed as a certificate. The right interpretation is observability and refreshable status, not authority.
+
+Telemetry commit fields:
+
+- `checked_commit` is the repo commit the checks were run against
+- `artifact_commit` is optional and exists to distinguish the commit that stores the YAML artifact from the commit that was checked
+- during ordinary local generation, `artifact_commit` is usually left `null`
 
 Refresh it with:
 
