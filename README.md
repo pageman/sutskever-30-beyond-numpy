@@ -283,7 +283,7 @@ The stronger and more defensible claim is:
 
 ### Narrative Arc
 
-The finished build order reads like a research apprenticeship arc.
+The finished build order now reads like a full research apprenticeship arc with a second pass of verification discipline layered on top of it.
 
 It starts by teaching the grammar of learning systems:
 
@@ -310,10 +310,10 @@ It closes with a deliberately theory-heavy tail:
 - `05`, `23`, `25`, `24`, `01`, `19`
 - simplicity pressure, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
 
-The result is cumulative language. Later papers do not arrive in isolation. They inherit notation, test discipline, backend expectations, parity habits, and formalization norms from earlier ones. That matters because the educational value of a corpus is not just in having many papers; it is in making the later ones easier to think with because the earlier ones already established the conceptual grammar.
+What is different now is that the narrative no longer ends with mere structural completion. The repo has begun a second arc: converting presence into evidence. Some papers now have mechanism-specific invariants, shape assertions, stronger post-step backend agreement checks, and explicit proxy-scope notes where the executable toy is narrower than the paper’s true claim. That makes the corpus read less like a static collection of ports and more like an evolving research instrument.
 
 > **Narrative / Story Box**
-> The story of the repo is a climb from hand-checkable mechanisms to systems-level behavior and then into reflective, theory-adjacent territory. It begins with learning how to state and train simple objects correctly, moves through memory, attention, and retrieval, and ends in a tail where the notes, claims, and formal slices are often as important as the executable toy itself.
+> The story of the repo is a climb from hand-checkable mechanisms to systems-level behavior and then into reflective, theory-adjacent territory. It begins by teaching how to state and train simple objects correctly, passes through memory, attention, and retrieval, and ends in a tail where the executable toy, the symbolic layer, the formal layer, and the honesty of the notes all matter differently. The later story is not just “more papers”; it is “better calibrated claims about what each paper representation really establishes.”
 
 ### Methodological Arc
 
@@ -322,7 +322,7 @@ The methodological arc matters as much as the paper sequence because the repo is
 - what is the smallest executable object here?
 - what is the core equation or invariant?
 - what must survive translation across backends?
-- what is intentionally thin, partial, or ceremonial?
+- what is intentionally thin, partial, ceremonial, or only proxy-faithful?
 
 In the early papers, the difficulty is mostly mechanical:
 
@@ -341,8 +341,9 @@ In the later papers, the difficulty becomes interpretive:
 - decide which part is executable mechanism and which part is conceptual framing
 - decide what `SymPy` can illuminate versus what it can only restate
 - decide what `Cubical Agda` can formalize honestly versus what would be fake rigor
+- decide whether a theory-heavy paper is being represented directly or only through a narrower executable proxy
 
-That shift is deliberate. Early papers train implementation discipline. Later papers train representational discipline.
+That shift is deliberate. Early papers train implementation discipline. Later papers train representational discipline. The recent verification pass adds a further layer: observability discipline. It is no longer enough for a layer to be present; the repo increasingly asks what was tested, what invariant was checked, what shape was asserted, what post-step agreement survived, and what part of the paper claim remains outside the executable regime.
 
 The recurring method of the repo is:
 
@@ -351,19 +352,20 @@ The recurring method of the repo is:
 3. make `NumPy` the smallest executable truth source
 4. add `SymPy`, `tinygrad`, `PyTorch`, and `JAX` as distinct interpretive and executable layers
 5. keep `Cubical Agda` present as a real formal layer even when it is minimal
-6. test parity, smoke behavior, and runner coverage instead of only checking file presence
-7. state omissions and low-value layers plainly in `NOTES.md`
+6. test parity, shape, smoke behavior, runner coverage, and selected mechanism-specific invariants instead of only checking file presence
+7. state omissions, low-value layers, and proxy scope plainly in `NOTES.md`
+8. surface the result in `verification.yaml` so the repo’s claims are observable rather than purely rhetorical
 
-The end result is a comparative method, not just a code archive. Each paper becomes a stable object that can be inspected numerically, symbolically, through a small autodiff system, through mainstream frameworks, through a functional transformation stack, and through a typed formal layer.
+The end result is a comparative method, not just a code archive. Each paper becomes a stable object that can be inspected numerically, symbolically, through a small autodiff system, through mainstream frameworks, through a functional transformation stack, through a typed formal layer, and, for theory-heavy cases, through explicit metadata describing what the executable toy does and does not establish.
 
 > **Method Box**
-> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic object, one minimal numerical truth source, several executable translations, one honest note about what is thin, and one formal layer that is real even when small.
+> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic object, one minimal numerical truth source, several executable translations, one explicit note about what is thin, one note about what is only proxy-faithful, and one formal layer that is real even when small.
 
 > **Narrative / Story Box**
-> If the narrative arc is “the ideas get larger,” the methodological arc is “the standards get stricter.” The repo begins by teaching how to implement the math plainly, and it ends by demanding honesty about what is actually executable, what is merely derivational, and what is formalized in a meaningful way.
+> If the narrative arc is “the ideas get larger,” the methodological arc is “the standards get stricter.” The repo begins by teaching how to implement the math plainly, and it increasingly asks harder questions: do the backends still agree after a step, do the shapes line up, does the invariant actually hold, and if the paper is theory-heavy, what exactly is the executable toy a proxy for?
 
 > **Method Box**
-> In practice, the repo works best when every paper answers four questions clearly: what is the smallest executable object, what is the core equation, what do the backends have to agree on, and what is intentionally omitted.
+> In practice, the repo works best when every paper answers five questions clearly: what is the smallest executable object, what is the core equation, what do the backends have to agree on, what invariant is worth checking, and what is intentionally omitted or only represented through a proxy.
 
 ## Status
 
