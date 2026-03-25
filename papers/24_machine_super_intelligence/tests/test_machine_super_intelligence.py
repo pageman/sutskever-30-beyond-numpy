@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape
 
 from s30bn.paper24_machine_super_intelligence import (
     SuperIntelligenceConfig,
@@ -33,6 +34,10 @@ def test_machine_superintelligence_backends_match_numpy() -> None:
     assert np.allclose(numpy_result["logits"], tinygrad_logits.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["logits"], torch_logits.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["logits"], np.asarray(jax_logits), atol=1e-8)
+    expected_shape = np.asarray(numpy_result["logits"]).shape
+    assert_array_shape(tinygrad_logits.numpy(), expected_shape)
+    assert_array_shape(torch_logits.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_logits), expected_shape)
 
 
 def test_machine_superintelligence_one_step_improves_loss() -> None:

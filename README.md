@@ -370,7 +370,7 @@ The full `01..30` corpus is now populated.
 
 Current verification status:
 
-- `64` Python tests passing
+- `70` Python tests passing
 - `make agda-check` passing across all paper formalization layers
 - `scripts/run_paper.py` wired for all `30` papers
 

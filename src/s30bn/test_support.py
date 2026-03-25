@@ -29,6 +29,18 @@ def assert_probabilities_normalized(probs: np.ndarray, axis: int = -1, *, atol: 
     assert np.allclose(totals, 1.0, atol=atol), f"probabilities did not sum to 1 along axis {axis}"
 
 
+def assert_loss_trajectories_close(
+    reference: tuple[float, float],
+    comparisons: Mapping[str, tuple[float, float]],
+    *,
+    atol: float = 1e-8,
+) -> None:
+    ref_before, ref_after = reference
+    for name, (before, after) in comparisons.items():
+        assert np.allclose(ref_before, before, atol=atol), f"{name} pre-step loss mismatch"
+        assert np.allclose(ref_after, after, atol=atol), f"{name} post-step loss mismatch"
+
+
 def permute_graph_batch(
     graphs: np.ndarray,
     adjacency: np.ndarray,

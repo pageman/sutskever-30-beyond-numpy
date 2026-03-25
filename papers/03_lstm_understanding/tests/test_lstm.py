@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape, assert_loss_trajectories_close
 
 from s30bn.paper03_lstm import (
     LSTMConfig,
@@ -33,6 +34,10 @@ def test_lstm_torch_and_jax_match_numpy() -> None:
     assert np.allclose(numpy_result["logits"], tinygrad_logits.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["logits"], torch_logits.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["logits"], np.asarray(jax_logits), atol=1e-8)
+    expected_shape = np.asarray(numpy_result["logits"]).shape
+    assert_array_shape(tinygrad_logits.numpy(), expected_shape)
+    assert_array_shape(torch_logits.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_logits), expected_shape)
 
 
 def test_lstm_one_step_improves_loss() -> None:
@@ -57,3 +62,32 @@ def test_lstm_one_step_improves_loss() -> None:
     _, jax_params = train_step_jax(jax_params, inputs, targets, config.learning_rate)
     after_jax, _ = forward_jax(jax_params, inputs, targets)
     assert float(after_jax) <= float(before_jax)
+
+
+def test_lstm_one_step_losses_match_across_backends() -> None:
+    config = LSTMConfig()
+    params = init_params(config)
+    inputs, targets = build_dataset(config)
+
+    tinygrad_params = params_to_tinygrad(params)
+    before_tinygrad, _ = forward_tinygrad(tinygrad_params, inputs, targets)
+    train_step_tinygrad(tinygrad_params, inputs, targets, config.learning_rate)
+    after_tinygrad, _ = forward_tinygrad(tinygrad_params, inputs, targets)
+
+    torch_params = params_to_torch(params)
+    before_torch, _ = forward_torch(torch_params, inputs, targets)
+    train_step_torch(torch_params, inputs, targets, config.learning_rate)
+    after_torch, _ = forward_torch(torch_params, inputs, targets)
+
+    jax_params = params_to_jax(params)
+    before_jax, _ = forward_jax(jax_params, inputs, targets)
+    _, jax_params = train_step_jax(jax_params, inputs, targets, config.learning_rate)
+    after_jax, _ = forward_jax(jax_params, inputs, targets)
+
+    assert_loss_trajectories_close(
+        (float(before_torch.detach()), float(after_torch.detach())),
+        {
+            "tinygrad": (before_tinygrad.item(), after_tinygrad.item()),
+            "jax": (float(before_jax), float(after_jax)),
+        },
+    )

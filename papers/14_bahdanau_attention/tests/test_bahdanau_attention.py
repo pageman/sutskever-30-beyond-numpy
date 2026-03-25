@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape, assert_loss_trajectories_close, assert_probabilities_normalized
 
 from s30bn.paper14_bahdanau_attention import (
     BahdanauConfig,
@@ -36,6 +37,15 @@ def test_bahdanau_backends_match_numpy() -> None:
     assert np.allclose(numpy_result["attention"], tinygrad_attention.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["attention"], torch_attention.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["attention"], np.asarray(jax_attention), atol=1e-8)
+    expected_logits_shape = np.asarray(numpy_result["logits"]).shape
+    expected_attention_shape = np.asarray(numpy_result["attention"]).shape
+    assert_array_shape(tinygrad_logits.numpy(), expected_logits_shape)
+    assert_array_shape(torch_logits.detach().numpy(), expected_logits_shape)
+    assert_array_shape(np.asarray(jax_logits), expected_logits_shape)
+    assert_array_shape(tinygrad_attention.numpy(), expected_attention_shape)
+    assert_array_shape(torch_attention.detach().numpy(), expected_attention_shape)
+    assert_array_shape(np.asarray(jax_attention), expected_attention_shape)
+    assert_probabilities_normalized(np.asarray(jax_attention), axis=0)
 
 
 def test_bahdanau_one_step_improves_loss() -> None:
@@ -60,3 +70,32 @@ def test_bahdanau_one_step_improves_loss() -> None:
     _, jax_params = train_step_jax(jax_params, source, decoder_token, target, config)
     after_jax, _, _ = forward_jax(jax_params, source, decoder_token, target, config)
     assert float(after_jax) <= float(before_jax)
+
+
+def test_bahdanau_one_step_losses_match_across_backends() -> None:
+    config = BahdanauConfig()
+    params = init_params(config)
+    source, decoder_token, target = sample_pair(config)
+
+    tinygrad_params = params_to_tinygrad(params)
+    before_tinygrad, _, _ = forward_tinygrad(tinygrad_params, source, decoder_token, target, config)
+    train_step_tinygrad(tinygrad_params, source, decoder_token, target, config)
+    after_tinygrad, _, _ = forward_tinygrad(tinygrad_params, source, decoder_token, target, config)
+
+    torch_params = params_to_torch(params)
+    before_torch, _, _ = forward_torch(torch_params, source, decoder_token, target, config)
+    train_step_torch(torch_params, source, decoder_token, target, config)
+    after_torch, _, _ = forward_torch(torch_params, source, decoder_token, target, config)
+
+    jax_params = params_to_jax(params)
+    before_jax, _, _ = forward_jax(jax_params, source, decoder_token, target, config)
+    _, jax_params = train_step_jax(jax_params, source, decoder_token, target, config)
+    after_jax, _, _ = forward_jax(jax_params, source, decoder_token, target, config)
+
+    assert_loss_trajectories_close(
+        (float(before_torch.detach()), float(after_torch.detach())),
+        {
+            "tinygrad": (before_tinygrad.item(), after_tinygrad.item()),
+            "jax": (float(before_jax), float(after_jax)),
+        },
+    )

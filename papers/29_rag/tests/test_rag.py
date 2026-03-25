@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape
 
 from s30bn.paper29_rag import (
     RAGConfig,
@@ -33,6 +34,10 @@ def test_rag_backends_match_numpy() -> None:
     assert np.allclose(numpy_result["probs"], tinygrad_probs.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["probs"], torch_probs.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["probs"], np.asarray(jax_probs), atol=1e-8)
+    expected_shape = np.asarray(numpy_result["probs"]).shape
+    assert_array_shape(tinygrad_probs.numpy(), expected_shape)
+    assert_array_shape(torch_probs.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_probs), expected_shape)
 
 
 def test_rag_one_step_improves_loss() -> None:

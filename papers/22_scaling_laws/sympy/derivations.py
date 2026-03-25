@@ -2,14 +2,21 @@
 
 from __future__ import annotations
 
-from sympy import Symbol, diff
+import sympy as sp
 
-a = Symbol("a", real=True)
-b = Symbol("b", real=True)
-x = Symbol("x", real=True)
-y = Symbol("y", real=True)
 
-y_hat = a * x + b
-squared_error = (y_hat - y) ** 2
-grad_a = diff(squared_error, a)
-grad_b = diff(squared_error, b)
+def main() -> None:
+    a, b = sp.symbols("a b", real=True)
+    x1, x2, y1, y2 = sp.symbols("x1 x2 y1 y2", real=True)
+    objective = (a * x1 + b - y1) ** 2 + (a * x2 + b - y2) ** 2
+    grad_a = sp.simplify(sp.diff(objective, a))
+    grad_b = sp.simplify(sp.diff(objective, b))
+    solution = sp.solve((sp.Eq(grad_a, 0), sp.Eq(grad_b, 0)), (a, b), dict=True)
+    print("objective =", sp.expand(objective))
+    print("d objective / d a =", grad_a)
+    print("d objective / d b =", grad_b)
+    print("normal-equation solution =", solution)
+
+
+if __name__ == "__main__":
+    main()

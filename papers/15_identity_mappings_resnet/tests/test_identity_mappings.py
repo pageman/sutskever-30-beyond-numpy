@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape
 
 from s30bn.paper15_identity_mappings import (
     IdentityResNetConfig,
@@ -31,6 +32,10 @@ def test_identity_mappings_backends_match() -> None:
     assert np.allclose(tinygrad_logits.numpy(), np.asarray(jax_logits), atol=1e-8)
     assert np.allclose(float(torch_loss.detach()), float(jax_loss), atol=1e-8)
     assert np.allclose(torch_logits.detach().numpy(), np.asarray(jax_logits), atol=1e-8)
+    expected_shape = (images.shape[0], config.num_classes)
+    assert_array_shape(tinygrad_logits.numpy(), expected_shape)
+    assert_array_shape(torch_logits.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_logits), expected_shape)
 
 
 def test_identity_mappings_one_step_improves_loss() -> None:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape
 
 from s30bn.paper28_dense_passage_retrieval import (
     DPRConfig,
@@ -33,6 +34,10 @@ def test_dpr_backends_match_numpy() -> None:
     assert np.allclose(numpy_result["scores"], tinygrad_scores.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["scores"], torch_scores.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["scores"], np.asarray(jax_scores), atol=1e-8)
+    expected_shape = np.asarray(numpy_result["scores"]).shape
+    assert_array_shape(tinygrad_scores.numpy(), expected_shape)
+    assert_array_shape(torch_scores.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_scores), expected_shape)
 
 
 def test_dpr_one_step_improves_loss() -> None:

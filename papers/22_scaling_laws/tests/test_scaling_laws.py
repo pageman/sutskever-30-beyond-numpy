@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from s30bn.test_support import assert_array_shape
 
 from s30bn.paper22_scaling_laws import (
     ScalingConfig,
@@ -32,6 +33,10 @@ def test_scaling_law_backends_match_numpy() -> None:
     assert np.allclose(numpy_result["predictions"], tinygrad_predictions.numpy(), atol=1e-8)
     assert np.allclose(numpy_result["predictions"], torch_predictions.detach().numpy(), atol=1e-8)
     assert np.allclose(numpy_result["predictions"], np.asarray(jax_predictions), atol=1e-8)
+    expected_shape = np.asarray(numpy_result["predictions"]).shape
+    assert_array_shape(tinygrad_predictions.numpy(), expected_shape)
+    assert_array_shape(torch_predictions.detach().numpy(), expected_shape)
+    assert_array_shape(np.asarray(jax_predictions), expected_shape)
 
 
 def test_scaling_law_one_step_improves_loss() -> None:
