@@ -7,6 +7,11 @@ Reference baseline:
 
 This repository keeps the original paper numbering for compatibility, but tracks a separate `build_order` so implementation work can follow dependencies rather than the original list order.
 
+## About
+
+Based on the NumPy-version-only baseline:
+- [`pageman/Sutskever-30-Implementations`](https://github.com/pageman/Sutskever-30-Implementations)
+
 ## Tooling
 
 - Python project metadata: [`pyproject.toml`](/Users/hifi/sutskever-30-beyond-numpy/pyproject.toml)
@@ -272,3 +277,22 @@ For this repo, use:
 ```
 
 That installs `tinygrad` without the failing optional macOS Metal dependency chain. The repo's tinygrad code then defaults to `LLVM` unless you explicitly choose another tinygrad backend.
+
+## License
+
+This repository is released under the Creative Commons Attribution-NonCommercial 4.0 International license for educational and non-commercial use.
+
+See [LICENSE](/Users/hifi/sutskever-30-beyond-numpy/LICENSE) for the full text.
+
+## Citation
+
+If you use these implementations in your work or teaching:
+
+```bibtex
+@misc{sutskever30beyondnumpy,
+  title={Sutskever 30 Beyond NumPy: Multi-Backend Educational Implementation Suite},
+  author={Paul "The Pageman" Pajo and collaborators},
+  year={2026},
+  note={Educational multi-backend implementations of papers from Ilya Sutskever's recommended reading list, based on the NumPy-version-only repository https://github.com/pageman/Sutskever-30-Implementations}
+}
+```
