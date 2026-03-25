@@ -2,6 +2,8 @@
 
 module MachineSuperIntelligence where
 
+open import Agda.Builtin.Equality
+
 postulate
   Capability Consequence : Set
 
@@ -10,3 +12,6 @@ record Aggregator : Set1 where
     assess : Capability -> Consequence
 
 open Aggregator public
+
+assess-self : (a : Aggregator) (c : Capability) -> assess a c ≡ assess a c
+assess-self a c = refl

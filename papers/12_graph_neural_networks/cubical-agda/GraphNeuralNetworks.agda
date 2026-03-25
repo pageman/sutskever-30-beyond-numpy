@@ -2,6 +2,8 @@
 
 module GraphNeuralNetworks where
 
+open import Agda.Builtin.Equality
+
 postulate
   Node Message GraphLabel : Set
 
@@ -20,3 +22,6 @@ open Readout public
 
 forward : MessagePassing -> Readout -> Node -> Node -> GraphLabel
 forward mp ro a b = classify ro (aggregate mp (send mp a) (send mp b))
+
+forward-unfold : (mp : MessagePassing) (ro : Readout) (a b : Node) -> forward mp ro a b ≡ classify ro (aggregate mp (send mp a) (send mp b))
+forward-unfold mp ro a b = refl

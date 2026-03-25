@@ -2,6 +2,8 @@
 
 module Seq2SeqForSets where
 
+open import Agda.Builtin.Equality
+
 postulate
   Item Summary Output : Set
 
@@ -19,3 +21,6 @@ open Decoder public
 
 forward : Pooler -> Decoder -> Item -> Item -> Output
 forward p d a b = decode d (pool p a b)
+
+forward-unfold : (p : Pooler) (d : Decoder) (a b : Item) -> forward p d a b ≡ decode d (pool p a b)
+forward-unfold p d a b = refl

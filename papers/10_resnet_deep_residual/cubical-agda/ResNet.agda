@@ -2,6 +2,8 @@
 
 module ResNet where
 
+open import Agda.Builtin.Equality
+
 postulate
   Feature Label : Set
 
@@ -19,6 +21,9 @@ open Classifier public
 
 blockForward : ResidualBlock -> Feature -> Feature
 blockForward block x = x
+
+blockForward-identity : (block : ResidualBlock) (x : Feature) -> blockForward block x ≡ x
+blockForward-identity block x = refl
 
 forward : ResidualBlock -> Classifier -> Feature -> Label
 forward block head x = classify head (blockForward block x)

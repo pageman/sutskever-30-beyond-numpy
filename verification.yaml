@@ -1,12 +1,16 @@
-schema_version: 2
-generated_at: "2026-03-25T05:16:57.170755+00:00"
-checked_commit: "5f706a622579b3c2bce198ea0c3b9b90b3f95f45"
+schema_version: 3
+generated_at: "2026-03-25T05:36:07.237618+00:00"
+checked_commit: "112dca4795a85ef50cafd6ad2dbd05a0cfae2580"
 artifact_commit: null
 git_branch: "main"
 repo_checks:
   python_test_suite:
     passed: true
     command: "python3 -m pytest -q"
+    exit_code: 0
+  gradient_parity_minimal:
+    passed: true
+    command: "python3 -m pytest papers/test_gradient_parity_minimal.py -q"
     exit_code: 0
   agda_typecheck:
     passed: true
@@ -44,10 +48,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
     proxy_scope: "toy state-scoring proxy for local complexity-sensitive behavior, not a law of open-ended complexity growth."
     claim_coverage: "low"
     measured_regime: "deterministic low-dimensional state vectors with supervised labels."
@@ -80,10 +86,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "03"
     slug: "lstm_understanding"
     title: "03 Understanding LSTM Networks"
@@ -111,10 +119,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "04"
     slug: "rnn_regularization"
     title: "04 RNN Regularization"
@@ -142,10 +152,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "05"
     slug: "neural_network_pruning"
     title: "05 Keeping Neural Networks Simple"
@@ -173,10 +185,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "06"
     slug: "pointer_networks"
     title: "06 Pointer Networks"
@@ -204,10 +218,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "07"
     slug: "alexnet_cnn"
     title: "07 ImageNet Classification with Deep Convolutional Neural Networks"
@@ -235,10 +251,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "08"
     slug: "seq2seq_for_sets"
     title: "08 Order Matters Sequence to Sequence for Sets"
@@ -266,10 +284,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "09"
     slug: "gpipe"
     title: "09 GPipe"
@@ -297,10 +317,17 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
+    proxy_scope: "a two-stage toy pipeline with a single partition boundary and shared synthetic classification objective."
+    claim_coverage: "captures staged forward composition and microbatch separation, not the full systems story around large-scale pipeline parallel training."
+    measured_regime: "deterministic small-batch loss parity, one-step improvement, and thin cross-backend gradient agreement on a synthetic pipeline example."
+    failure_modes: "easy to overread as validating GPipe-scale throughput or scheduling efficiency; it does not test bubble costs, distributed execution, or communication overlap."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "10"
     slug: "resnet_deep_residual"
     title: "10 Deep Residual Learning for Image Recognition"
@@ -328,10 +355,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "11"
     slug: "dilated_convolutions"
     title: "11 Dilated Convolutions"
@@ -359,10 +388,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "12"
     slug: "graph_neural_networks"
     title: "12 Neural Message Passing for Graphs"
@@ -390,10 +421,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "13"
     slug: "attention_is_all_you_need"
     title: "13 Attention Is All You Need"
@@ -421,10 +454,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "14"
     slug: "bahdanau_attention"
     title: "14 Neural Machine Translation by Jointly Learning to Align and Translate"
@@ -452,10 +487,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "15"
     slug: "identity_mappings_resnet"
     title: "15 Identity Mappings in Deep Residual Networks"
@@ -483,10 +520,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "16"
     slug: "relational_reasoning"
     title: "16 Relational Reasoning"
@@ -514,10 +553,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "17"
     slug: "variational_autoencoder"
     title: "17 Variational Lossy Autoencoder"
@@ -545,10 +586,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "18"
     slug: "relational_rnn"
     title: "18 Relational RNNs"
@@ -576,10 +619,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "19"
     slug: "coffee_automaton"
     title: "19 The Coffee Automaton"
@@ -607,10 +652,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
     proxy_scope: "toy state-classification proxy for automaton-like transitions, not a full automata-theoretic account of the paper."
     claim_coverage: "low"
     measured_regime: "discrete low-cardinality state encodings with deterministic labels."
@@ -643,10 +690,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "21"
     slug: "ctc_speech"
     title: "21 Deep Speech 2"
@@ -674,10 +723,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "22"
     slug: "scaling_laws"
     title: "22 Scaling Laws"
@@ -705,10 +756,17 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
+    proxy_scope: "a tiny log-log regression over synthetic loss-vs-scale points rather than a full empirical study over model and data scales."
+    claim_coverage: "captures the algebra of fitting a power-law line in transformed space, not the empirical universality claims of the original literature."
+    measured_regime: "parity, tiny gradient agreement, and single-step optimization on four deterministic synthetic observations."
+    failure_modes: "easy to mistake the toy for evidence about real scaling exponents; it says nothing about dataset quality, optimization dynamics, or extrapolation reliability."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "23"
     slug: "mdl_principle"
     title: "23 MDL Principle"
@@ -736,10 +794,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
     proxy_scope: "regularized classifier proxy for MDL-style tradeoffs between fit and model cost."
     claim_coverage: "medium"
     measured_regime: "finite-dimensional supervised loss decomposition under quadratic parameter cost."
@@ -772,10 +832,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
     proxy_scope: "schematic capability-aggregation classifier, not a model of superintelligence in any strong theoretical or sociotechnical sense."
     claim_coverage: "low"
     measured_regime: "deterministic capability vectors and simple aggregation-to-label mapping."
@@ -808,10 +870,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
     proxy_scope: "compressibility-sensitive classifier proxy, not a computation of true Kolmogorov complexity."
     claim_coverage: "low-to-medium"
     measured_regime: "short synthetic sequences and proxy regularity labels."
@@ -844,10 +908,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal but meaningful"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "27"
     slug: "multi_token_prediction"
     title: "27 Multi-token Prediction"
@@ -875,10 +941,12 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
   - id: "28"
     slug: "dense_passage_retrieval"
     title: "28 Dense Passage Retrieval"
@@ -906,10 +974,17 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
+    proxy_scope: "a tiny dual-encoder retrieval toy with synthetic query/passage vectors and diagonal positive targets."
+    claim_coverage: "captures score-matrix contrastive retrieval structure, not corpus-scale indexing, hard-negative mining, or retrieval quality in realistic search settings."
+    measured_regime: "deterministic parity, thin gradient agreement, and one-step improvement on in-memory synthetic batches."
+    failure_modes: "can be overread as validating retrieval effectiveness; it does not test recall@k, ANN search, passage chunking, or large-corpus behavior."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "29"
     slug: "rag"
     title: "29 Retrieval-Augmented Generation"
@@ -937,10 +1012,17 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
+    proxy_scope: "a tiny retrieval-conditioned classifier that mixes synthetic document scores with synthetic generation targets."
+    claim_coverage: "captures mixture-style retrieval-conditioning, not the full behavior of retrieval-augmented language generation over real corpora and token sequences."
+    measured_regime: "deterministic parity, thin gradient agreement, and one-step loss improvement on a small synthetic batch."
+    failure_modes: "easy to overread as evidence about factuality or long-form generation; it does not test generation quality, document freshness, or retrieval latency."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"
   - id: "30"
     slug: "lost_in_middle"
     title: "30 Lost in the Middle"
@@ -968,7 +1050,14 @@ papers:
       cubical_agda:
         present: true
         typechecked: true
+        has_theorem: true
         status: "minimal"
     tests_file_present: true
     tests_passed: true
     run_paper_passed: true
+    gradient_parity_minimal: true
+    proxy_scope: "a small context-position toy with synthetic chunks, explicit position bias, and a single-step answer target."
+    claim_coverage: "captures the idea that placement affects access weight, not the full evaluation methodology behind long-context retrieval and answer accuracy studies."
+    measured_regime: "parity, thin gradient agreement, and position-biased loss behavior on deterministic synthetic examples."
+    failure_modes: "easy to overread as a full long-context benchmark; it does not test realistic prompts, model scaling, or robustness across large context windows."
+    capability_cartography_note: "proxy-scope framing here was informed by https://github.com/pageman/Capability-Cartography-Layer-2"

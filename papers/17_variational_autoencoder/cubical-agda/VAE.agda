@@ -2,6 +2,8 @@
 
 module VAE where
 
+open import Agda.Builtin.Equality
+
 postulate
   Observation Latent Reconstruction : Set
 
@@ -19,3 +21,6 @@ open Decoder public
 
 forward : Encoder -> Decoder -> Observation -> Reconstruction
 forward enc dec x = decode dec (encode enc x)
+
+forward-unfold : (enc : Encoder) (dec : Decoder) (x : Observation) -> forward enc dec x ≡ decode dec (encode enc x)
+forward-unfold enc dec x = refl

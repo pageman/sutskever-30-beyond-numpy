@@ -2,6 +2,8 @@
 
 module RelationalRNN where
 
+open import Agda.Builtin.Equality
+
 postulate
   Slot Output : Set
 
@@ -14,3 +16,6 @@ open RelationMemory public
 
 step : RelationMemory -> Slot -> Slot
 step mem s = update mem (relate mem s s)
+
+step-unfold : (mem : RelationMemory) (s : Slot) -> step mem s ≡ update mem (relate mem s s)
+step-unfold mem s = refl

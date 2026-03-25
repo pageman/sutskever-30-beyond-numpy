@@ -41,6 +41,19 @@ def assert_loss_trajectories_close(
         assert np.allclose(ref_after, after, atol=atol), f"{name} post-step loss mismatch"
 
 
+def assert_gradient_slice_close(
+    reference: np.ndarray,
+    comparisons: Mapping[str, np.ndarray],
+    *,
+    atol: float = 1e-7,
+) -> None:
+    reference_arr = np.asarray(reference, dtype=np.float64)
+    for name, value in comparisons.items():
+        value_arr = np.asarray(value, dtype=np.float64)
+        assert value_arr.shape == reference_arr.shape, f"{name} gradient slice shape mismatch"
+        assert np.allclose(reference_arr, value_arr, atol=atol), f"{name} gradient slice mismatch"
+
+
 def permute_graph_batch(
     graphs: np.ndarray,
     adjacency: np.ndarray,

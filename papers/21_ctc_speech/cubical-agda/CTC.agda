@@ -2,6 +2,8 @@
 
 module CTC where
 
+open import Agda.Builtin.Equality
+
 postulate
   Alignment Symbol Sequence : Set
 
@@ -19,3 +21,6 @@ open Decoder public
 
 forward : Collapse -> Decoder -> Alignment -> Symbol
 forward ctc dec a = emit dec (collapse ctc a)
+
+forward-unfold : (ctc : Collapse) (dec : Decoder) (a : Alignment) -> forward ctc dec a ≡ emit dec (collapse ctc a)
+forward-unfold ctc dec a = refl

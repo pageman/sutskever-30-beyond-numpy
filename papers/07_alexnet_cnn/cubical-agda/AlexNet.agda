@@ -2,6 +2,8 @@
 
 module AlexNet where
 
+open import Agda.Builtin.Equality
+
 postulate
   Image Feature HiddenFeature Label : Set
 
@@ -20,3 +22,6 @@ open Classifier public
 
 forward : FeatureExtractor -> Classifier -> Image -> Label
 forward extractor head x = classify head (conv₂ extractor (conv₁ extractor x))
+
+forward-unfold : (extractor : FeatureExtractor) (head : Classifier) (x : Image) -> forward extractor head x ≡ classify head (conv₂ extractor (conv₁ extractor x))
+forward-unfold extractor head x = refl

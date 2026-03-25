@@ -2,6 +2,8 @@
 
 module CNN where
 
+open import Agda.Builtin.Equality
+
 postulate
   Pixel Feature Label : Set
 
@@ -19,3 +21,6 @@ open Classifier public
 
 forward : ConvLayer -> Classifier -> Pixel -> Label
 forward conv head x = classify head (convolve conv x)
+
+forward-unfold : (conv : ConvLayer) (head : Classifier) (x : Pixel) -> forward conv head x ≡ classify head (convolve conv x)
+forward-unfold conv head x = refl

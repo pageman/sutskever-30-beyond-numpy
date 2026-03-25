@@ -2,6 +2,8 @@
 
 module Pruning where
 
+open import Agda.Builtin.Equality
+
 postulate
   Input Hidden Output : Set
 
@@ -12,3 +14,6 @@ record SparseNetwork : Set1 where
     readout : Hidden -> Output
 
 open SparseNetwork public
+
+keep-self : (net : SparseNetwork) (x : Input) -> keep net x ≡ keep net x
+keep-self net x = refl

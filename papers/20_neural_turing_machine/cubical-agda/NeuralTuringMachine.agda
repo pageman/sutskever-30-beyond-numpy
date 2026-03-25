@@ -2,6 +2,8 @@
 
 module NeuralTuringMachine where
 
+open import Agda.Builtin.Equality
+
 postulate
   Controller Memory Output : Set
 
@@ -14,3 +16,6 @@ open Addressing public
 
 step : Addressing -> Controller -> Memory -> Memory
 step addr c m = write addr c m
+
+step-unfold : (addr : Addressing) (c : Controller) (m : Memory) -> step addr c m ≡ write addr c m
+step-unfold addr c m = refl

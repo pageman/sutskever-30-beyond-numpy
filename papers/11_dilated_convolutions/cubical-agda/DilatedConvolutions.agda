@@ -2,6 +2,8 @@
 
 module DilatedConvolutions where
 
+open import Agda.Builtin.Equality
+
 postulate
   Image Feature Label : Set
 
@@ -19,3 +21,6 @@ open Classifier public
 
 forward : DilatedLayer -> Classifier -> Image -> Label
 forward layer head x = classify head (apply layer x)
+
+forward-unfold : (layer : DilatedLayer) (head : Classifier) (x : Image) -> forward layer head x ≡ classify head (apply layer x)
+forward-unfold layer head x = refl

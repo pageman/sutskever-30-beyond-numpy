@@ -2,6 +2,8 @@
 
 module IdentityMappings where
 
+open import Agda.Builtin.Equality
+
 postulate
   Feature Label : Set
 
@@ -13,6 +15,9 @@ open PreActBlock public
 
 identity : Feature -> Feature
 identity x = x
+
+identity-refl : (x : Feature) -> identity x ≡ x
+identity-refl x = refl
 
 blockForward : PreActBlock -> Feature -> Feature
 blockForward block x = identity x

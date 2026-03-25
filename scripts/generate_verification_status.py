@@ -49,6 +49,14 @@ def parse_note_field(notes_path: Path, label: str) -> str | None:
     return match.group(1).strip() if match else None
 
 
+def agda_has_theorem(agda_dir: Path) -> bool:
+    for path in agda_dir.glob("*.agda"):
+        text = path.read_text()
+        if "refl" in text or "cong" in text or "Path" in text:
+            return True
+    return False
+
+
 def bool_yaml(value: bool) -> str:
     return "true" if value else "false"
 
@@ -111,12 +119,16 @@ def paper_status(paper_dir: Path, repo_checks: dict[str, dict[str, object]]) -> 
             "cubical_agda": {
                 "present": (paper_dir / "cubical-agda").exists(),
                 "typechecked": any(paper_dir.joinpath("cubical-agda").glob("*.agda")) and bool(repo_checks["agda"]["passed"]),
+                "has_theorem": agda_has_theorem(paper_dir / "cubical-agda"),
                 "status": agda_status,
             },
         },
         "tests_file_present": any(paper_dir.joinpath("tests").glob("test_*.py")),
         "tests_passed": bool(repo_checks["pytest"]["passed"]),
         "run_paper_passed": bool(repo_checks["run_papers"]["passed"]),
+        "gradient_parity_minimal": (paper_dir / "torch" / "impl.py").exists()
+        and (paper_dir / "jax" / "impl.py").exists()
+        and bool(repo_checks["gradient_parity"]["passed"]),
         "proxy_scope": parse_note_field(notes_path, "Proxy scope"),
         "claim_coverage": parse_note_field(notes_path, "Claim coverage"),
         "measured_regime": parse_note_field(notes_path, "Measured regime"),
@@ -134,13 +146,18 @@ def render_yaml(
     git_branch: str,
 ) -> str:
     lines: list[str] = []
-    lines.append("schema_version: 2")
+    lines.append("schema_version: 3")
     lines.append(f"generated_at: {quote_yaml(dt.datetime.now(dt.timezone.utc).isoformat())}")
     lines.append(f"checked_commit: {quote_yaml(checked_commit)}")
     lines.append(f"artifact_commit: {optional_quote_yaml(artifact_commit)}")
     lines.append(f"git_branch: {quote_yaml(git_branch)}")
     lines.append("repo_checks:")
-    for key, label in (("pytest", "python_test_suite"), ("agda", "agda_typecheck"), ("run_papers", "run_paper_sweep")):
+    for key, label in (
+        ("pytest", "python_test_suite"),
+        ("gradient_parity", "gradient_parity_minimal"),
+        ("agda", "agda_typecheck"),
+        ("run_papers", "run_paper_sweep"),
+    ):
         check = repo_checks[key]
         lines.extend(
             indent(
@@ -181,6 +198,7 @@ def render_yaml(
                     f"tests_file_present: {bool_yaml(bool(paper['tests_file_present']))}",
                     f"tests_passed: {bool_yaml(bool(paper['tests_passed']))}",
                     f"run_paper_passed: {bool_yaml(bool(paper['run_paper_passed']))}",
+                    f"gradient_parity_minimal: {bool_yaml(bool(paper['gradient_parity_minimal']))}",
                 ],
                 4,
             )
@@ -211,12 +229,14 @@ def main() -> None:
 
     repo_checks = {
         "pytest": {"command": "python3 -m pytest -q", "passed": True, "exit_code": 0},
+        "gradient_parity": {"command": "python3 -m pytest papers/test_gradient_parity_minimal.py -q", "passed": True, "exit_code": 0},
         "agda": {"command": "source scripts/env.sh && make agda-check", "passed": True, "exit_code": 0},
         "run_papers": {"command": "python3 scripts/run_paper.py --paper XX (for all papers)", "passed": True, "exit_code": 0},
     }
 
     if args.run_checks:
         repo_checks["pytest"] = run_command("python3 -m pytest -q")
+        repo_checks["gradient_parity"] = run_command("python3 -m pytest papers/test_gradient_parity_minimal.py -q")
         repo_checks["agda"] = run_command("source scripts/env.sh && make agda-check")
         run_ids = sorted(path.name.split("_", 1)[0] for path in PAPERS_DIR.iterdir() if path.is_dir())
         run_results = [run_command(f"python3 scripts/run_paper.py --paper {paper_id}") for paper_id in run_ids]

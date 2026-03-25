@@ -2,6 +2,8 @@
 
 module CharRNN where
 
+open import Agda.Builtin.Equality
+
 postulate
   V H : Set
 
@@ -25,3 +27,6 @@ open RNNState public
 
 step : RNNParams -> V -> RNNState -> RNNState
 step params x current = record { state = recurrent params (state current) }
+
+step-state : (params : RNNParams) (x : V) (current : RNNState) -> state (step params x current) ≡ recurrent params (state current)
+step-state params x current = refl

@@ -2,6 +2,8 @@
 
 module BahdanauAttention where
 
+open import Agda.Builtin.Equality
+
 postulate
   EncoderState DecoderState Context Output : Set
 
@@ -19,3 +21,6 @@ open Decoder public
 
 forward : Attention -> Decoder -> EncoderState -> DecoderState -> Output
 forward attn dec h s = decode dec (attend attn h s) s
+
+forward-unfold : (attn : Attention) (dec : Decoder) (h : EncoderState) (s : DecoderState) -> forward attn dec h s ≡ decode dec (attend attn h s) s
+forward-unfold attn dec h s = refl

@@ -2,6 +2,8 @@
 
 module LSTM where
 
+open import Agda.Builtin.Equality
+
 postulate
   V H : Set
 
@@ -23,3 +25,6 @@ open Gates public
 
 step : Gates -> LSTMState -> LSTMState
 step gates current = record { hidden = output gates ; cell = candidate gates }
+
+step-hidden : (gates : Gates) (current : LSTMState) -> hidden (step gates current) ≡ output gates
+step-hidden gates current = refl

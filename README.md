@@ -57,7 +57,7 @@ Agda status note:
 
 Verification telemetry note:
 - this repo exposes a generated [`verification.yaml`](verification.yaml) as an observability artifact, not as a correctness certificate
-- the point is to record what was present, executed, typechecked, and last refreshed
+- the point is to record what was present, executed, typechecked, gradient-checked at a thin level, and last refreshed
 - the point is not to claim full reproduction or full formal verification
 - for theory-heavy papers, the notes and telemetry can also record proxy scope and claim coverage rather than pretending the executable toy fully captures the paper
 
@@ -373,7 +373,7 @@ The full `01..30` corpus is now populated.
 
 Current verification status:
 
-- `70` Python tests passing
+- `71` Python tests passing
 - `make agda-check` passing across all paper formalization layers
 - `scripts/run_paper.py` wired for all `30` papers
 
@@ -387,7 +387,8 @@ It is meant to answer:
 
 - which layers are present for each paper
 - which repo-wide checks most recently passed
-- whether the Agda layer typechecked
+- whether each paper has minimal Torch/JAX gradient parity coverage
+- whether the Agda layer typechecked and contains at least one theorem-bearing definition
 - whether the demo runner sweep completed
 - which layers are substantive, partial, minimal, or ceremonial
 - which commit was actually checked, even when the artifact is committed later

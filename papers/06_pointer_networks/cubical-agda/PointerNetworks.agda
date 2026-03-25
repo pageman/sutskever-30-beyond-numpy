@@ -2,6 +2,8 @@
 
 module PointerNetworks where
 
+open import Agda.Builtin.Equality
+
 postulate
   Item Query Position : Set
 
@@ -19,3 +21,6 @@ open Pointer public
 
 forward : Encoder -> Pointer -> Item -> Item -> Position
 forward e p a b = point p (encode e a) (encode e b)
+
+forward-unfold : (e : Encoder) (p : Pointer) (a b : Item) -> forward e p a b ≡ point p (encode e a) (encode e b)
+forward-unfold e p a b = refl
