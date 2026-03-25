@@ -2,30 +2,26 @@
 
 module CharRNN where
 
+postulate
+  V H : Set
+
 record RNNShape : Set1 where
   field
-    V H : Set
+    vocab hidden : Set
 
-open RNNShape public
-
-record RNNParams (S : RNNShape) : Set1 where
+record RNNParams : Set1 where
   field
-    embed : V S -> H S
-    recurrent : H S -> H S
-    project : H S -> V S
+    embed : V -> H
+    recurrent : H -> H
+    project : H -> V
 
 open RNNParams public
 
-record RNNState (S : RNNShape) : Set where
+record RNNState : Set where
   field
-    hidden : H S
+    state : H
 
 open RNNState public
 
-step :
-  {S : RNNShape} ->
-  RNNParams S ->
-  V S ->
-  RNNState S ->
-  RNNState S
-step params x state = record { hidden = recurrent params (hidden state) }
+step : RNNParams -> V -> RNNState -> RNNState
+step params x current = record { state = recurrent params (state current) }

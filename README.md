@@ -7,6 +7,13 @@ Reference baseline:
 
 This repository keeps the original paper numbering for compatibility, but tracks a separate `build_order` so implementation work can follow dependencies rather than the original list order.
 
+## Tooling
+
+- Python project metadata: [`pyproject.toml`](/Users/hifi/sutskever-30-beyond-numpy/pyproject.toml)
+- Demo runner: [`scripts/run_paper.py`](/Users/hifi/sutskever-30-beyond-numpy/scripts/run_paper.py)
+- Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](/Users/hifi/sutskever-30-beyond-numpy/sutskever-30-beyond-numpy.agda-lib)
+- Agda setup notes: [`docs/AGDA_SETUP.md`](/Users/hifi/sutskever-30-beyond-numpy/docs/AGDA_SETUP.md)
+
 ## Backend Policy
 
 Per paper, the expected implementation pipeline is:
@@ -94,3 +101,13 @@ Recommended build order:
 30. `19` Coffee Automaton
 
 The structured source of truth for this is [`papers.yaml`](/Users/hifi/sutskever-30-beyond-numpy/papers.yaml).
+
+## Commands
+
+```bash
+python3 -m pytest papers/02_char_rnn_karpathy/tests/test_char_rnn.py papers/03_lstm_understanding/tests/test_lstm.py papers/26_cs231n_cnn_fundamentals/tests/test_cnn.py -q
+python3 scripts/run_paper.py --paper 02
+python3 scripts/run_paper.py --paper 03
+python3 scripts/run_paper.py --paper 26
+make agda-check
+```
