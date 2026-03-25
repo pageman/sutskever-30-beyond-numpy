@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+Symbolic treatment is minimal here. The useful contribution is mainly the explicit reminder that no finite symbolic proxy equals true Kolmogorov complexity.

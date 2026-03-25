@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+Symbolic treatment is minimal here. The useful artifact is just the abstract composition from capability vector to aggregated decision score.

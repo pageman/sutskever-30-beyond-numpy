@@ -1,3 +1,3 @@
 # PyTorch
 
-Primary executable implementation.
+Primary executable implementation. This is the practical sparse-network baseline for the simplicity paper slot.

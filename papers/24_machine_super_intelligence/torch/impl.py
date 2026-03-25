@@ -1,11 +1,10 @@
-"""Minimal NumPy sanity checks for Machine Super Intelligence."""
-
 from __future__ import annotations
 
 from s30bn.paper24_machine_super_intelligence import (
     SuperIntelligenceConfig,
-    forward_numpy,
+    forward_torch,
     init_params,
+    params_to_torch,
     synthetic_superintelligence_batch,
 )
 
@@ -13,9 +12,9 @@ from s30bn.paper24_machine_super_intelligence import (
 def main() -> None:
     config = SuperIntelligenceConfig()
     capabilities, targets = synthetic_superintelligence_batch()
-    result = forward_numpy(init_params(config), capabilities, targets)
-    print("paper 24 numpy loss:", round(float(result["loss"]), 6))
-    print("paper 24 logits shape:", result["logits"].shape)
+    loss, logits = forward_torch(params_to_torch(init_params(config)), capabilities, targets)
+    print("paper 24 torch loss:", round(float(loss.detach()), 6))
+    print("paper 24 torch logits shape:", tuple(logits.shape))
 
 
 if __name__ == "__main__":

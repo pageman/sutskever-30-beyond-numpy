@@ -1,3 +1,3 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+SymPy is genuinely useful here because the paper slot is about the decomposition between data description cost and model description cost.

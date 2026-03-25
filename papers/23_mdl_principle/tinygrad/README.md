@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. It is a bit ceremonial here, but it still keeps the MDL objective executable across the full backend ladder.

@@ -1,3 +1,3 @@
 # Cubical Agda
 
-Formalization layer. Keep present even when intentionally minimal.
+Formalization layer. The useful slice is the distinction between sequence objects and their descriptions.

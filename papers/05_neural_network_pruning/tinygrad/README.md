@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. Sparse masking is still simple enough here that the tinygrad path is easy to inspect directly.
