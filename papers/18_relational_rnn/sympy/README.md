@@ -1,3 +1,6 @@
 # SymPy
 
-Symbolic derivations or a note explaining why symbolic treatment is thin for this paper.
+This layer focuses on the slot-pair relation map.
+
+- `derivations.py` encodes a scalar relation over two memory slots.
+- The symbolic leverage is local, not a full recurrent unrolling.

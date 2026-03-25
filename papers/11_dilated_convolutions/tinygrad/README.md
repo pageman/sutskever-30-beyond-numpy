@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad backend.
+
+The implementation makes dilation explicit by expanding the kernel with zeros, which keeps tinygrad aligned with the other backends without relying on backend-specific dilation support.

@@ -32,10 +32,38 @@ from s30bn.paper04_rnn_regularization import (
 )
 from s30bn.paper07_alexnet import AlexNetConfig, init_params as init_alexnet_params, synthetic_imagenet_like
 from s30bn.paper10_resnet import ResNetConfig, init_params as init_resnet_params, synthetic_residual_dataset
+from s30bn.paper11_dilated_convolutions import (
+    DilatedConvConfig,
+    init_params as init_dilated_params,
+    synthetic_context_dataset,
+)
+from s30bn.paper14_bahdanau_attention import (
+    BahdanauConfig,
+    forward_numpy as bahdanau_forward_numpy,
+    init_params as init_bahdanau_params,
+    sample_pair as sample_bahdanau_pair,
+)
 from s30bn.paper15_identity_mappings import (
     IdentityResNetConfig,
     init_params as init_identity_params,
     synthetic_identity_dataset,
+)
+from s30bn.paper16_relational_reasoning import (
+    RelationConfig,
+    init_params as init_relation_params,
+    synthetic_relation_dataset,
+)
+from s30bn.paper18_relational_rnn import (
+    RelationalRNNConfig,
+    build_dataset as build_relational_rnn_dataset,
+    forward_numpy as relational_rnn_forward_numpy,
+    init_params as init_relational_rnn_params,
+)
+from s30bn.paper20_neural_turing_machine import (
+    NTMConfig,
+    build_dataset as build_ntm_dataset,
+    forward_numpy as ntm_forward_numpy,
+    init_params as init_ntm_params,
 )
 from s30bn.paper26_cs231n import CNNConfig, init_params as init_cnn_params, synthetic_cifar_like
 
@@ -77,12 +105,49 @@ def run_10() -> None:
     print(f"paper 10 stem kernel shape: {params['stem_w'].shape}")
 
 
+def run_11() -> None:
+    config = DilatedConvConfig()
+    images, labels = synthetic_context_dataset(config)
+    params = init_dilated_params(config)
+    print(f"paper 11 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
+    print(f"paper 11 dilated kernel base shape: {params['dilated_w'].shape}")
+
+
+def run_14() -> None:
+    config = BahdanauConfig()
+    source, decoder_token, target = sample_bahdanau_pair(config)
+    result = bahdanau_forward_numpy(init_bahdanau_params(config), source, decoder_token, target, config)
+    print(f"paper 14 numpy loss: {result['loss']:.6f}")
+
+
 def run_15() -> None:
     config = IdentityResNetConfig()
     images, labels = synthetic_identity_dataset(config)
     params = init_identity_params(config)
     print(f"paper 15 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
     print(f"paper 15 residual kernel shape: {params['conv1_w'].shape}")
+
+
+def run_16() -> None:
+    config = RelationConfig()
+    scenes, labels = synthetic_relation_dataset(config)
+    params = init_relation_params(config)
+    print(f"paper 16 scenes shape: {scenes.shape}, labels: {labels.tolist()}")
+    print(f"paper 16 relation head shape: {params['f_w'].shape}")
+
+
+def run_18() -> None:
+    config = RelationalRNNConfig()
+    inputs, targets = build_relational_rnn_dataset(config)
+    result = relational_rnn_forward_numpy(init_relational_rnn_params(config), inputs, targets, config)
+    print(f"paper 18 numpy loss: {result['loss']:.6f}")
+
+
+def run_20() -> None:
+    config = NTMConfig()
+    inputs, targets = build_ntm_dataset(config)
+    result = ntm_forward_numpy(init_ntm_params(config), inputs, targets, config)
+    print(f"paper 20 numpy loss: {result['loss']:.6f}")
 
 
 def run_26() -> None:
@@ -95,7 +160,7 @@ def run_26() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "10", "15", "26"])
+    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "10", "11", "14", "15", "16", "18", "20", "26"])
     args = parser.parse_args()
     {
         "02": run_02,
@@ -103,7 +168,12 @@ def main() -> None:
         "04": run_04,
         "07": run_07,
         "10": run_10,
+        "11": run_11,
+        "14": run_14,
         "15": run_15,
+        "16": run_16,
+        "18": run_18,
+        "20": run_20,
         "26": run_26,
     }[args.paper]()
 

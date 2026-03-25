@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad relational-memory recurrent model.
+
+This is a good educational use of tinygrad because the slot interactions remain explicit.

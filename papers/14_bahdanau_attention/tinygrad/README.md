@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad additive-attention backend.
+
+This is one of the stronger uses of tinygrad because the attention computation stays compact and inspectable.

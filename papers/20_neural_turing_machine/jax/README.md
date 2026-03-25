@@ -1,3 +1,5 @@
 # JAX
 
-Functional executable implementation and parity target.
+`impl.py` expresses the read/write memory update functionally.
+
+That makes it a useful parity target for the memory dynamics.

@@ -1,3 +1,5 @@
 # JAX
 
-Functional executable implementation and parity target.
+`impl.py` expresses the same dilated receptive-field pattern in functional form.
+
+This is a good parity target because receptive-field growth is easier to reason about when the kernel transformation is explicit.

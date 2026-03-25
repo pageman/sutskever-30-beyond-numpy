@@ -1,3 +1,5 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+`impl.py` is a real tinygrad relation network.
+
+This is a good fit for tinygrad because the pair loops are explicit and still small enough to inspect.
