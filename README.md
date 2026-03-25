@@ -267,34 +267,60 @@ The stronger and more defensible claim is:
 - the combination is unusual
 - the method is the point
 
-### The Research Arc So Far
+### Narrative Arc
 
-The repository has already taken on a recognizable shape.
+The completed build order now reads like a full research-training arc rather than a loose collection of ports.
 
-The early build order established the grammar of deep learning:
+Act I established the grammar of learning systems:
 
-- recurrence
-- gating
-- regularization
-- convolution
-- residual learning
+- `26`, `02`, `03`, `04`
+- vision basics, vanilla recurrence, gated recurrence, and regularization
 
-The middle of the build order moved into structure and mechanism:
+Act II established the architecture backbone:
 
-- attention
-- pointer-style outputs
-- set encoding
-- graph message passing
-- memory systems
-- latent-variable models
+- `07`, `10`, `15`, `11`
+- CNNs, residual pathways, identity mappings, and receptive-field control
 
-That matters because later papers no longer need to invent their own local language from scratch. They inherit a vocabulary of tested objects, shapes, losses, and invariants from earlier papers.
+Act III moved into structured cognition:
 
-### The Methodological Arc
+- `14`, `06`, `08`, `13`, `16`, `18`, `20`, `12`, `21`, `17`
+- alignment, pointing, set structure, attention, relations, memory, graphs, sequence alignment, and latent variables
 
-The process only works if every paper is reduced to a disciplined small core.
+Act IV moved into modern LLM and retrieval behavior:
 
-The repo’s method is:
+- `09`, `22`, `27`, `28`, `29`, `30`
+- systems scaling, scaling-law abstraction, multi-token prediction, retrieval, retrieval-augmented generation, and context-position effects
+
+Act V closed with reflective and theoretical tails:
+
+- `05`, `23`, `25`, `24`, `01`, `19`
+- simplicity, description length, compressibility, capability aggregation, toy complexity dynamics, and automaton structure
+
+The important consequence is cumulative language. Later papers do not have to invent their own local notation, test discipline, or backend vocabulary from scratch. They inherit tested shapes, losses, invariants, and implementation patterns from earlier ones.
+
+> **Narrative / Story Box**
+> The story of the repo is a climb from hand-checkable learning mechanisms to systems-level and theory-adjacent ideas. It starts with the grammar of deep learning, passes through architecture and memory, reaches retrieval and context behavior, and then ends in a deliberately reflective tail where the executable object is often a proxy and the notes matter as much as the code.
+
+### Methodological Arc
+
+The methodological arc is as important as the paper sequence.
+
+At the start of the project, the problem is mostly mechanical:
+
+- can the core object be stated clearly?
+- can the tensor program be made tiny and deterministic?
+- can multiple backends agree on it?
+
+As the build order progresses, the problem becomes interpretive:
+
+- what exactly is the paper claiming?
+- which part is executable mechanism and which part is conceptual framing?
+- what deserves symbolic treatment, and what would only be ceremonial?
+- what deserves a formal interface in Agda, and what would be fake rigor?
+
+That shift is intentional. The repository is designed so that early papers build implementation discipline, while later papers test representational discipline.
+
+The repo’s recurring method is:
 
 1. write a precise `spec.md`
 2. choose a tiny deterministic problem
@@ -304,7 +330,20 @@ The repo’s method is:
 6. test parity and one-step behavior instead of just checking that files exist
 7. state omissions honestly in `NOTES.md`
 
-That is the real research method embedded in the repo. It is less about collecting code and more about building stable comparative understanding.
+The result is not just a collection of implementations. It is a repeated method for reducing a paper to a stable comparative object.
+
+> **Method Box**
+> The method of the repo is triangulation under constraint: one paper, one compact spec, one tiny deterministic dataset, one minimal numerical truth source, several executable interpretations, one explicit note about what is thin, and one formal layer that is real even when small.
+
+> **Narrative / Story Box**
+> If the narrative arc is “how the ideas get larger,” the methodological arc is “how the repo gets stricter.” Early on, strictness means writing the math plainly. Later on, it means refusing to pretend that a thin symbolic or formal layer is deep when it is not.
+
+> **Method Box**
+> In practice, the repo works best when every paper answers four questions clearly:
+> what is the smallest executable object,
+> what is the core equation,
+> what do the backends have to agree on,
+> and what is intentionally omitted.
 
 ## Status
 
