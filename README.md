@@ -16,6 +16,7 @@ Based on the Numpy-version-only:
 
 - Python project metadata: [`pyproject.toml`](pyproject.toml)
 - Demo runner: [`scripts/run_paper.py`](scripts/run_paper.py)
+- Verification telemetry generator: [`scripts/generate_verification_status.py`](scripts/generate_verification_status.py)
 - tinygrad installer helper: [`scripts/install_tinygrad.sh`](scripts/install_tinygrad.sh)
 - Agda library file: [`sutskever-30-beyond-numpy.agda-lib`](sutskever-30-beyond-numpy.agda-lib)
 - Agda setup notes: [`docs/AGDA_SETUP.md`](docs/AGDA_SETUP.md)
@@ -46,6 +47,11 @@ Agda status note:
 - `make agda-check` means the Cubical Agda layer typechecks successfully.
 - It does not mean the whole paper is formally verified.
 - In many papers here, the Agda layer is intentionally minimal and captures only a formal core, interface, or invariant slice.
+
+Verification telemetry note:
+- this repo exposes a generated [`verification.yaml`](verification.yaml) as an observability artifact, not as a correctness certificate
+- the point is to record what was present, executed, typechecked, and last refreshed
+- the point is not to claim full reproduction or full formal verification
 
 ## Why This Pipeline
 
@@ -356,6 +362,32 @@ Current verification status:
 - `scripts/run_paper.py` wired for all `30` papers
 
 That does not mean all papers are implemented at equal depth. It does mean the repository is structurally complete and verified at the level this project claims.
+
+## Verification Telemetry
+
+This repository keeps a generated [`verification.yaml`](verification.yaml) file as a repo-level verification record.
+
+It is meant to answer:
+
+- which layers are present for each paper
+- which repo-wide checks most recently passed
+- whether the Agda layer typechecked
+- whether the demo runner sweep completed
+- which layers are substantive, partial, minimal, or ceremonial
+
+It is intentionally not framed as a certificate. The right interpretation is observability and refreshable status, not authority.
+
+Refresh it with:
+
+```bash
+python3 scripts/generate_verification_status.py --run-checks
+```
+
+or:
+
+```bash
+make verification-status
+```
 
 ## Repository Layout
 

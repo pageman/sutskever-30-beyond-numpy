@@ -1,0 +1,948 @@
+schema_version: 1
+generated_at: "2026-03-25T03:36:57.455047+00:00"
+git_commit: "a6bcd094e2b10095d571bf68d54adaf75274c010"
+git_branch: "main"
+repo_checks:
+  python_test_suite:
+    passed: true
+    command: "python3 -m pytest -q"
+    exit_code: 0
+  agda_typecheck:
+    passed: true
+    command: "source scripts/env.sh && make agda-check"
+    exit_code: 0
+  run_paper_sweep:
+    passed: true
+    command: "python3 scripts/run_paper.py --paper XX (for all papers)"
+    exit_code: 0
+papers:
+  - id: "01"
+    slug: "complexity_dynamics"
+    title: "01 The First Law of Complexodynamics"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "02"
+    slug: "char_rnn_karpathy"
+    title: "02 The Unreasonable Effectiveness of Recurrent Neural Networks"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "03"
+    slug: "lstm_understanding"
+    title: "03 Understanding LSTM Networks"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "04"
+    slug: "rnn_regularization"
+    title: "04 RNN Regularization"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "05"
+    slug: "neural_network_pruning"
+    title: "05 Keeping Neural Networks Simple"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "06"
+    slug: "pointer_networks"
+    title: "06 Pointer Networks"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "07"
+    slug: "alexnet_cnn"
+    title: "07 ImageNet Classification with Deep Convolutional Neural Networks"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "08"
+    slug: "seq2seq_for_sets"
+    title: "08 Order Matters Sequence to Sequence for Sets"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "09"
+    slug: "gpipe"
+    title: "09 GPipe"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal but present"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "10"
+    slug: "resnet_deep_residual"
+    title: "10 Deep Residual Learning for Image Recognition"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "11"
+    slug: "dilated_convolutions"
+    title: "11 Dilated Convolutions"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "12"
+    slug: "graph_neural_networks"
+    title: "12 Neural Message Passing for Graphs"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "13"
+    slug: "attention_is_all_you_need"
+    title: "13 Attention Is All You Need"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "14"
+    slug: "bahdanau_attention"
+    title: "14 Neural Machine Translation by Jointly Learning to Align and Translate"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "15"
+    slug: "identity_mappings_resnet"
+    title: "15 Identity Mappings in Deep Residual Networks"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "16"
+    slug: "relational_reasoning"
+    title: "16 Relational Reasoning"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "17"
+    slug: "variational_autoencoder"
+    title: "17 Variational Lossy Autoencoder"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "18"
+    slug: "relational_rnn"
+    title: "18 Relational RNNs"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "19"
+    slug: "coffee_automaton"
+    title: "19 The Coffee Automaton"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "20"
+    slug: "neural_turing_machine"
+    title: "20 Neural Turing Machines"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial but meaningful"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "21"
+    slug: "ctc_speech"
+    title: "21 Deep Speech 2"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "22"
+    slug: "scaling_laws"
+    title: "22 Scaling Laws"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "23"
+    slug: "mdl_principle"
+    title: "23 MDL Principle"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "substantive"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "24"
+    slug: "machine_super_intelligence"
+    title: "24 Machine Super Intelligence"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "25"
+    slug: "kolmogorov_complexity"
+    title: "25 Kolmogorov Complexity"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "26"
+    slug: "cs231n_cnn_fundamentals"
+    title: "26 CS231n CNNs for Visual Recognition"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "present but intentionally light"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal but meaningful"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "27"
+    slug: "multi_token_prediction"
+    title: "27 Multi-token Prediction"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "28"
+    slug: "dense_passage_retrieval"
+    title: "28 Dense Passage Retrieval"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "substantive"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "29"
+    slug: "rag"
+    title: "29 Retrieval-Augmented Generation"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "minimal"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
+  - id: "30"
+    slug: "lost_in_middle"
+    title: "30 Lost in the Middle"
+    layers:
+      numpy:
+        present: true
+        executed: true
+        kind: "minimal"
+      sympy:
+        present: true
+        executed: true
+        status: "partial"
+      tinygrad:
+        present: true
+        executed: true
+        status: "present"
+      torch:
+        present: true
+        executed: true
+        status: "substantive"
+      jax:
+        present: true
+        executed: true
+        status: "substantive"
+      cubical_agda:
+        present: true
+        typechecked: true
+        status: "minimal"
+    tests_file_present: true
+    tests_passed: true
+    run_paper_passed: true
