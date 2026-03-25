@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend. It is a bit superfluous for such a small regression, but it still keeps the backend ladder complete and verifies that even the simplest fit behaves consistently.

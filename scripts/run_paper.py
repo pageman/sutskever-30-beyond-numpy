@@ -30,7 +30,9 @@ from s30bn.paper04_rnn_regularization import (
     forward_numpy as rnnreg_forward_numpy,
     init_params as init_rnnreg_params,
 )
+from s30bn.paper06_pointer_networks import PointerConfig, forward_numpy as pointer_forward_numpy, init_params as init_pointer_params, synthetic_pointer_batch
 from s30bn.paper07_alexnet import AlexNetConfig, init_params as init_alexnet_params, synthetic_imagenet_like
+from s30bn.paper08_seq2seq_sets import SetSeqConfig, forward_numpy as setseq_forward_numpy, init_params as init_setseq_params, synthetic_set_batch
 from s30bn.paper10_resnet import ResNetConfig, init_params as init_resnet_params, synthetic_residual_dataset
 from s30bn.paper11_dilated_convolutions import (
     DilatedConvConfig,
@@ -38,6 +40,7 @@ from s30bn.paper11_dilated_convolutions import (
     synthetic_context_dataset,
 )
 from s30bn.paper12_gnn import GNNConfig, init_params as init_gnn_params, synthetic_graph_dataset
+from s30bn.paper13_transformer import TransformerConfig, forward_numpy as transformer_forward_numpy, init_params as init_transformer_params, synthetic_attention_batch
 from s30bn.paper14_bahdanau_attention import (
     BahdanauConfig,
     forward_numpy as bahdanau_forward_numpy,
@@ -69,6 +72,7 @@ from s30bn.paper20_neural_turing_machine import (
     init_params as init_ntm_params,
 )
 from s30bn.paper21_ctc import CTCConfig, forward_numpy as ctc_forward_numpy, init_params as init_ctc_params, synthetic_ctc_batch
+from s30bn.paper22_scaling_laws import forward_numpy as scaling_forward_numpy, init_params as init_scaling_params, synthetic_scaling_data
 from s30bn.paper26_cs231n import CNNConfig, init_params as init_cnn_params, synthetic_cifar_like
 
 
@@ -93,12 +97,26 @@ def run_04() -> None:
     print(f"paper 04 numpy loss: {result['loss']:.6f}")
 
 
+def run_06() -> None:
+    config = PointerConfig()
+    seqs, targets = synthetic_pointer_batch()
+    result = pointer_forward_numpy(init_pointer_params(config), seqs, targets)
+    print(f"paper 06 numpy loss: {result['loss']:.6f}")
+
+
 def run_07() -> None:
     config = AlexNetConfig()
     images, labels = synthetic_imagenet_like(config)
     params = init_alexnet_params(config)
     print(f"paper 07 synthetic dataset shape: {images.shape}, labels: {labels.tolist()}")
     print(f"paper 07 conv1 kernel shape: {params['conv1_w'].shape}")
+
+
+def run_08() -> None:
+    config = SetSeqConfig()
+    sets, targets = synthetic_set_batch()
+    result = setseq_forward_numpy(init_setseq_params(config), sets, targets)
+    print(f"paper 08 numpy loss: {result['loss']:.6f}")
 
 
 def run_09() -> None:
@@ -131,6 +149,13 @@ def run_12() -> None:
     print(f"paper 12 graphs shape: {graphs.shape}, labels: {labels.tolist()}")
     print(f"paper 12 message weight shape: {params['W_msg'].shape}")
     print(f"paper 12 adjacency shape: {adjacency.shape}")
+
+
+def run_13() -> None:
+    config = TransformerConfig()
+    seqs, targets = synthetic_attention_batch()
+    result = transformer_forward_numpy(init_transformer_params(config), seqs, targets)
+    print(f"paper 13 numpy loss: {result['loss']:.6f}")
 
 
 def run_14() -> None:
@@ -184,6 +209,12 @@ def run_21() -> None:
     print(f"paper 21 numpy loss: {result['loss']:.6f}")
 
 
+def run_22() -> None:
+    log_n, log_loss = synthetic_scaling_data()
+    result = scaling_forward_numpy(init_scaling_params(), log_n, log_loss)
+    print(f"paper 22 numpy loss: {result['loss']:.6f}")
+
+
 def run_26() -> None:
     config = CNNConfig()
     images, labels = synthetic_cifar_like(config)
@@ -194,17 +225,20 @@ def run_26() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "07", "09", "10", "11", "12", "14", "15", "16", "17", "18", "20", "21", "26"])
+    parser.add_argument("--paper", required=True, choices=["02", "03", "04", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20", "21", "22", "26"])
     args = parser.parse_args()
     {
         "02": run_02,
         "03": run_03,
         "04": run_04,
+        "06": run_06,
         "07": run_07,
+        "08": run_08,
         "09": run_09,
         "10": run_10,
         "11": run_11,
         "12": run_12,
+        "13": run_13,
         "14": run_14,
         "15": run_15,
         "16": run_16,
@@ -212,6 +246,7 @@ def main() -> None:
         "18": run_18,
         "20": run_20,
         "21": run_21,
+        "22": run_22,
         "26": run_26,
     }[args.paper]()
 

@@ -1,3 +1,3 @@
 # tinygrad
 
-Minimal executable backend. Keep present even when intentionally thin or mostly ceremonial for this paper.
+Minimal executable backend for the pointer logits. This is a good fit for tinygrad because the model is mostly transparent tensor algebra with autograd on top.
